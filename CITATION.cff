@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use Analytical in research or teaching, please cite this software and the primary scientific sources used in your model."
+type: software
+title: "Analytical: Physics-first development and validation of mechanistic models"
+abstract: "A Codex skill and standalone workflow for developing, auditing, falsifying, and validating physics-based analytical and reduced-order mechanistic models, with emphasis on thermal fluids, phase change, boiling, and critical heat flux."
+authors:
+  - family-names: "Hu"
+    given-names: "Han"
+    affiliation: "Department of Mechanical Engineering, University of Arkansas"
+version: "0.1.2"
+date-released: 2026-08-02
+license: Apache-2.0
+repository-code: "https://github.com/hanhuark/analytical"
+url: "https://github.com/hanhuark/analytical"
+keywords:
+  - "analytical modeling"
+  - "physics-based modeling"
+  - "mechanistic models"
+  - "thermal fluids"
+  - "heat transfer"
+  - "multiphase flow"
+  - "boiling"
+  - "critical heat flux"
+  - "model verification"
+  - "model validation"

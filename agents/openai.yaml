@@ -1,4 +1,4 @@
 interface:
-  display_name: "Analytical"
-  short_description: "Derive and verify mechanistic models"
-  default_prompt: "Use $analytical to develop or audit a mechanistic model from balances, assumptions, primary sources, and discriminating benchmarks."
+  display_name: "Analytical Model Developer"
+  short_description: "Derive, audit, and validate physics-based models"
+  default_prompt: "Use $analytical to develop, challenge, or validate a physics-based analytical model from conservation laws, explicit assumptions, primary sources, and discriminating benchmarks."

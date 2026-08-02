@@ -1,0 +1,69 @@
+name: Theory, model, benchmark, or public resource
+description: Propose a relevant public source, implementation, dataset, or benchmark
+title: "[resource] "
+labels: ["evidence-resource"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Propose only material that is publicly accessible or that you have the right to share.
+        Do not include confidential research, restricted data, credentials, reviewer identities,
+        student records, or sponsor-controlled material.
+  - type: dropdown
+    id: resource_type
+    attributes:
+      label: Resource type
+      options:
+        - Governing theory or derivation
+        - Analytical model or correlation
+        - Open-source implementation
+        - Experimental dataset
+        - Numerical benchmark
+        - Standard or evaluation protocol
+        - Review used only for discovery
+    validations:
+      required: true
+  - type: input
+    id: citation
+    attributes:
+      label: Citation or project name
+      placeholder: Author, title, year, journal or repository
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Public URL or persistent identifier
+      placeholder: https://... or DOI
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Physical and mathematical scope
+      description: State the event, regime, geometry, materials or fluids, variables, units, property states, and key assumptions.
+    validations:
+      required: true
+  - type: textarea
+    id: role
+    attributes:
+      label: Proposed evidence or benchmark role
+      description: Explain the specific claim, baseline, closure, contradiction, or validation gate this resource could support.
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Provenance, uncertainty, and access conditions
+      description: Include version, data origin, preprocessing, uncertainty, license, and known limitations when applicable.
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Rights and evidence check
+      options:
+        - label: I may share this material and have not included confidential or restricted information.
+          required: true
+        - label: I understand that reachability or inclusion does not establish scientific validity.
+          required: true
