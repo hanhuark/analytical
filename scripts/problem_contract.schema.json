@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hanhuark/analytical/schemas/problem-contract-2.0.json",
+  "title": "Analytical problem contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "title", "decision_or_claim", "model_status", "claim_ladder_rung", "evidence_state", "event_definition",
+    "system_boundary", "regime", "geometry_and_frame", "materials_or_fluids",
+    "operating_conditions", "initial_conditions", "boundary_conditions", "dependent_variables",
+    "governing_variables", "conservation_laws", "source_and_sink_terms", "constitutive_closures",
+    "frame_and_invariance", "scale_analysis", "assumptions", "exclusions", "baselines",
+    "calibration_boundary", "acceptance_criteria", "falsification_cases", "uncertainty_plan",
+    "benchmark_plan", "provenance"
+  ],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "title": {"$ref": "#/$defs/nonemptyString"},
+    "decision_or_claim": {"$ref": "#/$defs/nonemptyString"},
+    "model_status": {"enum": ["proposed", "derived", "calibrated", "internally-verified", "validated-in-domain", "independently-validated"]},
+    "claim_ladder_rung": {"type": "integer", "minimum": 1, "maximum": 8},
+    "evidence_state": {"$ref": "#/$defs/evidenceState"},
+    "event_definition": {"$ref": "#/$defs/nonemptyString"},
+    "system_boundary": {"$ref": "#/$defs/nonemptyString"},
+    "regime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["description", "included", "excluded"],
+      "properties": {
+        "description": {"$ref": "#/$defs/nonemptyString"},
+        "included": {"$ref": "#/$defs/nonemptyStringArray"},
+        "excluded": {"$ref": "#/$defs/nonemptyStringArray"}
+      }
+    },
+    "geometry_and_frame": {"$ref": "#/$defs/nonemptyString"},
+    "materials_or_fluids": {"$ref": "#/$defs/nonemptyStringArray"},
+    "operating_conditions": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["name", "range", "unit", "property_state", "evidence_state"],
+        "properties": {
+          "name": {"$ref": "#/$defs/nonemptyString"},
+          "range": {"$ref": "#/$defs/nonemptyString"},
+          "unit": {"$ref": "#/$defs/nonemptyString"},
+          "property_state": {"$ref": "#/$defs/nonemptyString"},
+          "evidence_state": {"$ref": "#/$defs/evidenceState"}
+        }
+      }
+    },
+    "initial_conditions": {"$ref": "#/$defs/nonemptyStringArray"},
+    "boundary_conditions": {"$ref": "#/$defs/nonemptyStringArray"},
+    "dependent_variables": {"$ref": "#/$defs/variableArray"},
+    "governing_variables": {"$ref": "#/$defs/variableArray"},
+    "conservation_laws": {"$ref": "#/$defs/nonemptyStringArray"},
+    "source_and_sink_terms": {"$ref": "#/$defs/nonemptyStringArray"},
+    "constitutive_closures": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "name", "relation", "status", "provenance", "calibration_boundary", "evidence_state"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^C[1-9][0-9]*$"},
+          "name": {"$ref": "#/$defs/nonemptyString"},
+          "relation": {"$ref": "#/$defs/nonemptyString"},
+          "status": {"enum": ["derived", "measured", "reported", "correlated", "fitted", "assumed", "unknown"]},
+          "provenance": {"$ref": "#/$defs/nonemptyString"},
+          "calibration_boundary": {"$ref": "#/$defs/nonemptyString"},
+          "evidence_state": {"$ref": "#/$defs/evidenceState"}
+        }
+      }
+    },
+    "frame_and_invariance": {"$ref": "#/$defs/nonemptyString"},
+    "scale_analysis": {
+      "type": "object", "additionalProperties": false,
+      "required": ["reference_scales", "dimensionless_groups", "ordering_parameters", "expected_reduction_error"],
+      "properties": {
+        "reference_scales": {"$ref": "#/$defs/nonemptyStringArray"},
+        "dimensionless_groups": {"$ref": "#/$defs/nonemptyStringArray"},
+        "ordering_parameters": {"$ref": "#/$defs/nonemptyStringArray"},
+        "expected_reduction_error": {"$ref": "#/$defs/nonemptyString"}
+      }
+    },
+    "assumptions": {"$ref": "#/$defs/nonemptyStringArray"},
+    "exclusions": {"$ref": "#/$defs/nonemptyStringArray"},
+    "baselines": {"$ref": "#/$defs/nonemptyStringArray"},
+    "calibration_boundary": {"$ref": "#/$defs/nonemptyString"},
+    "acceptance_criteria": {"$ref": "#/$defs/nonemptyStringArray"},
+    "falsification_cases": {"$ref": "#/$defs/nonemptyStringArray"},
+    "uncertainty_plan": {"$ref": "#/$defs/nonemptyString"},
+    "benchmark_plan": {"$ref": "#/$defs/nonemptyStringArray"},
+    "provenance": {"$ref": "#/$defs/nonemptyStringArray"}
+  },
+  "$defs": {
+    "nonemptyString": {"type": "string", "minLength": 1},
+    "nonemptyStringArray": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonemptyString"}},
+    "evidenceState": {"enum": ["measured", "reported", "simulated", "derived", "assumed", "inferred", "illustrative", "screening-level", "proposed", "independently-validated", "unknown"]},
+    "variableArray": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["name", "symbol", "dimension", "unit", "sign_convention", "role", "property_state", "definition", "evidence_state"],
+        "properties": {
+          "name": {"$ref": "#/$defs/nonemptyString"},
+          "symbol": {"$ref": "#/$defs/nonemptyString"},
+          "dimension": {"$ref": "#/$defs/nonemptyString"},
+          "unit": {"$ref": "#/$defs/nonemptyString"},
+          "sign_convention": {"$ref": "#/$defs/nonemptyString"},
+          "role": {"$ref": "#/$defs/nonemptyString"},
+          "property_state": {"$ref": "#/$defs/nonemptyString"},
+          "definition": {"$ref": "#/$defs/nonemptyString"},
+          "evidence_state": {"$ref": "#/$defs/evidenceState"}
+        }
+      }
+    }
+  }
+}

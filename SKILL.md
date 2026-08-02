@@ -1,6 +1,6 @@
 ---
 name: analytical
-description: Develop, challenge, and validate analytical or mechanistic models in engineering and the physical sciences. Use for conservation-law and governing-equation derivations, assumption audits, scaling laws, nondimensional criteria, closure relations, instability thresholds, reduced-order theories, asymptotic or transform methods, mathematical-physics analysis, theoretical thermal-fluid development, boiling and critical-heat-flux mechanisms, literature and model mapping, benchmark selection, or any request to create, audit, falsify, or experimentally discriminate a physics-based model.
+description: Develop, challenge, and validate physics-based analytical or reduced-order mechanistic models when the central deliverable is a conservation-law derivation, scaling or closure model, instability threshold, falsification analysis, or mechanism-discriminating validation plan, especially for thermal fluids, phase change, boiling, and critical heat flux. Use for governing-equation and assumption audits, nondimensional reductions, mathematical-physics method selection, public theory/model mapping, and benchmark design tied to a mechanistic model. Do not use for generic literature summaries, routine data analysis, empirical curve fitting, manuscript editing, or numerical setup unless creating or auditing the mechanistic model is central.
 ---
 
 # Analytical
@@ -9,11 +9,25 @@ Build inspectable, falsifiable theories rather than plausible equations. Preserv
 
 ## Select the mode
 
-- `explore`: define the problem and generate genuinely different mechanisms.
-- `derive`: develop one specified mechanism into a closed analytical model.
-- `audit`: challenge an existing derivation, assumption, correlation, or claimed theory.
-- `validate`: test a model computationally or against independent data.
-- `full`: run the complete workflow. Use this by default for a new model.
+Choose the smallest mode that answers the request. Do not default to `full` merely because the model is new.
+
+| Mode | Use and required workflow steps | Minimum output | Claim ceiling | Stop condition |
+|---|---|---|---|---|
+| `explore` | Define scope and balances, audit assumptions/evidence, and generate mechanisms: steps 1-5 and 10 | Contract, balance/assumption audits, evidence/resources, hypothesis matrix | Rung 2: qualitative hypothesis | Mechanisms and decisive tests are distinct; do not derive a preferred model without selection authority |
+| `derive` | Close and derive one selected mechanism: steps 1-4, 6-8, and 10 | Explore artifacts plus derivation and model card | Rung 4: closed analytical model | Stop at an unresolved closure, ill-posed boundary, failed conservation check, or unsupported ordering |
+| `audit` | Reconstruct and challenge an existing model: steps 1-4, 6, 8, and 10 | Contract, audits, evidence/resources, model card, verification report | Report the existing rung; do not promote it | Stop after every material finding is classified and linked to evidence or a required check |
+| `validate` | Test an already closed model: steps 1, 3, 4, and 8-10 | Contract, assumption/evidence records, verification, benchmarks, validation summary | Rung 8 only with independent cross-domain evidence | Stop when sealed evidence is exhausted or a blocking gate fails |
+| `full` | Run steps 1-10 for an explicitly end-to-end research task | Complete package | Evidence-dependent | Stop rather than simulate missing sources, data, calculations, or experiments |
+
+Create a correctly named scaffold before substantial work:
+
+```bash
+python scripts/init_package.py <analysis-package> --mode <explore|derive|audit|validate|full>
+```
+
+Use the completed [steady-wall conduction derivation](examples/steady-wall-conduction/) and [saturated pool-CHF audit](examples/saturated-pool-chf-audit/) as format and status examples. Do not transfer their assumptions, evidence, or claim rung to a new problem.
+
+Do not begin derivation until the event, system boundary, variables, units, boundary conditions, and falsification criteria are adequate. Do not promote a model while a `fatal` or `major` verification finding remains unresolved.
 
 ## Run the workflow
 
@@ -23,7 +37,7 @@ Define the decision or claim, event, system boundary, regime, geometry, material
 
 Do not combine physically distinct events under one target. For example, keep saturated pool-boiling CHF, subcooled departure from nucleate boiling, annular-film dryout, and confined-channel crisis separate unless a derivation explicitly connects them.
 
-Read [problem-contract.md](references/problem-contract.md) and instantiate [problem-contract.json](assets/problem-contract.json) for a reusable package.
+Read [problem-contract.md](references/problem-contract.md) and instantiate [problem_contract.json](assets/problem_contract.json) for a reusable package.
 
 ### 2. Construct the balance hierarchy
 
@@ -39,7 +53,7 @@ Preserve this hierarchy:
 6. nondimensional form and scale ordering;
 7. reduced governing equation.
 
-Record every deleted, combined, or modeled term in [balance-audit.md](assets/balance-audit.md). Read [governing-physics.md](references/governing-physics.md) for canonical balances, interface conditions, and reduction tests.
+Record every deleted, combined, or modeled term in [balance_audit.md](assets/balance_audit.md). Read [governing-physics.md](references/governing-physics.md) for canonical balances, interface conditions, and reduction tests.
 
 ### 3. Audit governing-equation assumptions
 
@@ -52,7 +66,7 @@ For each assumption state:
 - the expected error order and failure regime;
 - an observable or benchmark that can test it.
 
-Do not use labels such as `steady`, `incompressible`, `one-dimensional`, `adiabatic`, `equilibrium`, or `negligible inertia` without connecting them to terms and scales. Keep assumptions distinct from boundary conditions, closures, measured facts, and numerical choices. Use [assumption-ledger.md](assets/assumption-ledger.md).
+Do not use labels such as `steady`, `incompressible`, `one-dimensional`, `adiabatic`, `equilibrium`, or `negligible inertia` without connecting them to terms and scales. Keep assumptions distinct from boundary conditions, closures, measured facts, and numerical choices. Use [assumption_ledger.md](assets/assumption_ledger.md).
 
 ### 4. Build the evidence, model, and novelty map
 
@@ -63,13 +77,15 @@ Do not use labels such as `steady`, `incompressible`, `one-dimensional`, `adiaba
 
 Label inputs and outputs as `measured`, `reported`, `simulated`, `derived`, `assumed`, `inferred`, `illustrative`, `screening-level`, `proposed`, `independently-validated`, or `unknown`.
 
-Read [public-resources.md](references/public-resources.md). Use [resource-register.md](assets/resource-register.md) and [evidence-map.md](assets/evidence-map.md). Recheck online resources when used; bundled links are starting points, not frozen evidence.
+Read [public-resources.md](references/public-resources.md). Use [resource_register.md](assets/resource_register.md) and [evidence_map.md](assets/evidence_map.md). Recheck online resources when used; bundled links are starting points, not frozen evidence.
+
+Check the bundled registry structure and staleness with `python scripts/check_resources.py`; add `--online` only when network verification is required. A reachable URL still does not verify the supporting passage.
 
 ### 5. Generate mechanism diversity
 
-Generate at least five mutually distinct hypotheses when scope permits. Vary the governing competition, not merely coefficients or fitting functions. Include relevant alternatives based on conservation, instability, competing timescales, topology or connectivity, interfacial physics, conjugate response, stochasticity, or a physically defensible bridge from another field.
+Generate three mechanisms for a narrow exploratory question and at least five for a substantial new-theory search when the evidence permits. Use fewer only when the scoped physics rules alternatives out, and state that reason. Vary the governing competition, not merely coefficients or fitting functions. Include relevant alternatives based on conservation, instability, competing timescales, topology or connectivity, interfacial physics, conjugate response, stochasticity, or a physically defensible bridge from another field.
 
-For each hypothesis record the causal chain, required balances and closures, scaling skeleton, distinctive prediction, likely failure regime, decisive test, and prior work that could defeat novelty. Use [hypothesis-matrix.md](assets/hypothesis-matrix.md). Do not select a winner before defining the verification criteria.
+For each hypothesis record the causal chain, required balances and closures, scaling skeleton, distinctive prediction, likely failure regime, decisive test, and prior work that could defeat novelty. Use [hypothesis_matrix.md](assets/hypothesis_matrix.md). Do not select a winner before defining the verification criteria.
 
 ### 6. Select mathematics by the physical question
 
@@ -98,13 +114,13 @@ Classify findings as `fatal`, `major`, `repairable`, `applicability-limiting`, o
 - Group holdouts by physical domain shift: fluid, material, surface, geometry, laboratory, pressure, forcing, or simulation family.
 - Report residual structure, measurement uncertainty, variability, parameter sensitivity, numerical error, and model-form discrepancy separately.
 
-Read [benchmark-data.md](references/benchmark-data.md), populate [benchmark-register.md](assets/benchmark-register.md), and use [validation-summary.md](assets/validation-summary.md). Do not call a model validated because it fits construction or calibration data.
+Read [benchmark-data.md](references/benchmark-data.md), populate [benchmark_register.md](assets/benchmark_register.md), and use [validation_summary.md](assets/validation_summary.md). Do not call a model validated because it fits construction or calibration data.
 
 ### 10. Synthesize and design a discriminating study
 
 Select the simplest model that survives the gates and answers the scoped question. If mechanisms dominate different regimes, construct an observable regime map or switching criterion. Do not hide incompatible causal accounts inside an unconstrained blend.
 
-Report whether the result is a hypothesis, scaling law, closed model, calibrated correlation, screening tool, or independently validated theory. Use [model-card.md](assets/model-card.md), [verification-report.md](assets/verification-report.md), and [experiment-plan.md](assets/experiment-plan.md).
+Report whether the result is a hypothesis, scaling law, closed model, calibrated correlation, screening tool, or independently validated theory. Use [model_card.md](assets/model_card.md), machine-readable [verification_report.json](assets/verification_report.json), and [experiment_plan.md](assets/experiment_plan.md).
 
 Identify conditions where surviving mechanisms make materially different predictions. Design the smallest experiment or simulation matrix with controlled variables, synchronized intermediate observables, predicted directions or effect sizes, measurement uncertainty, predeclared acceptance criteria, and sealed validation cases.
 
@@ -131,11 +147,12 @@ Do not count a model judging its own derivation as independent validation. Give 
 | Physical contract and claim ladder | [problem-contract.md](references/problem-contract.md) |
 | Conservation laws, interfaces, assumptions, and reductions | [governing-physics.md](references/governing-physics.md) |
 | Mathematical theory and tool selection | [mathematical-toolkit.md](references/mathematical-toolkit.md) |
-| Public theory, literature, and implementation resources | [public-resources.md](references/public-resources.md) |
+| Public theory, literature, implementations, and machine-readable starting records | [public-resources.md](references/public-resources.md) and [public-resource-registry.json](references/public-resource-registry.json) |
 | Experimental data, benchmarks, and uncertainty | [benchmark-data.md](references/benchmark-data.md) |
 | Reusable role prompts | [prompt-library.md](references/prompt-library.md) |
 | Thermal fluids, boiling crisis, and CHF | [thermal-fluids.md](references/thermal-fluids.md) |
 | Pass/fail verification rubric | [verification-gates.md](references/verification-gates.md) |
+| Skill A/B evaluation and regression protocol | [evaluation-protocol.md](references/evaluation-protocol.md) and [evaluation_cases.json](tests/evaluation_cases.json) |
 
 ## Produce a traceable package
 
@@ -151,7 +168,7 @@ analysis-package/
 |-- hypothesis_matrix.md
 |-- derivations/
 |-- model_card.md
-|-- verification_report.md
+|-- verification_report.json
 |-- benchmark_register.md
 |-- validation_summary.md
 `-- experiment_plan.md
@@ -164,6 +181,8 @@ python scripts/validate_package.py <analysis-package> --stage contract
 python scripts/validate_package.py <analysis-package> --stage theory
 python scripts/validate_package.py <analysis-package> --stage verified
 ```
+
+Or validate the selected workflow directly with `--mode`. A validator `PASS` means that the package structure, schema, required sections, and recorded evidence fields satisfy the declared contract. It does not prove that the equations, citations, data, or conclusions are scientifically correct.
 
 ## Completion standard
 

@@ -1,0 +1,54 @@
+{
+  "schema_version": "2.0",
+  "title": "Steady one-dimensional conduction through a plane wall",
+  "decision_or_claim": "Derive wall temperature and heat flux from prescribed face temperatures without calibration.",
+  "model_status": "derived",
+  "claim_ladder_rung": 4,
+  "evidence_state": "derived",
+  "event_definition": "A steady solution satisfies the energy equation and both face temperatures with zero volumetric generation.",
+  "system_boundary": "Homogeneous solid slab from x=0 to x=L; the two faces are external boundaries and lateral faces are adiabatic by symmetry/large-aspect-ratio assumption.",
+  "regime": {
+    "description": "Continuum, stationary solid, steady one-dimensional conduction with constant isotropic conductivity.",
+    "included": ["Positive constant thermal conductivity", "Prescribed face temperatures", "No volumetric heat generation"],
+    "excluded": ["Transient storage", "Contact resistance", "Radiation", "Lateral heat loss", "Temperature-dependent conductivity"]
+  },
+  "geometry_and_frame": "Cartesian x coordinate normal to a slab of thickness L; positive x points from the hot face to the cold face; stationary laboratory frame.",
+  "materials_or_fluids": ["Homogeneous isotropic solid with k>0"],
+  "operating_conditions": [
+    {"name": "wall thickness", "range": "L>0", "unit": "m", "property_state": "as manufactured", "evidence_state": "assumed"},
+    {"name": "hot-face temperature", "range": "T_H>T_C", "unit": "K", "property_state": "boundary value", "evidence_state": "assumed"},
+    {"name": "cold-face temperature", "range": "T_C<T_H", "unit": "K", "property_state": "boundary value", "evidence_state": "assumed"}
+  ],
+  "initial_conditions": ["Not required for the declared steady boundary-value problem; transient approach is excluded."],
+  "boundary_conditions": ["T(0)=T_H", "T(L)=T_C"],
+  "dependent_variables": [
+    {"name": "temperature", "symbol": "T", "dimension": "Theta", "unit": "K", "sign_convention": "Absolute thermodynamic temperature", "role": "dependent field", "property_state": "local solid", "definition": "Steady solid temperature", "evidence_state": "derived"},
+    {"name": "conductive heat flux", "symbol": "q_x", "dimension": "M T^-3", "unit": "W m^-2", "sign_convention": "Positive in +x", "role": "predicted response", "property_state": "local solid", "definition": "Energy rate per unit area in the x direction", "evidence_state": "derived"}
+  ],
+  "governing_variables": [
+    {"name": "position", "symbol": "x", "dimension": "L", "unit": "m", "sign_convention": "0 at hot face and +x toward cold face", "role": "independent coordinate", "property_state": "geometry", "definition": "Wall-normal coordinate", "evidence_state": "assumed"},
+    {"name": "thermal conductivity", "symbol": "k", "dimension": "M L T^-3 Theta^-1", "unit": "W m^-1 K^-1", "sign_convention": "Positive material property", "role": "constitutive property", "property_state": "constant over the slab state range", "definition": "Fourier conductivity", "evidence_state": "assumed"},
+    {"name": "wall thickness", "symbol": "L", "dimension": "L", "unit": "m", "sign_convention": "Positive", "role": "geometry parameter", "property_state": "fixed geometry", "definition": "Distance between prescribed-temperature faces", "evidence_state": "assumed"}
+  ],
+  "conservation_laws": ["Steady total-energy conservation reduces to d(q_x)/dx=0."],
+  "source_and_sink_terms": ["No volumetric energy generation; energy enters at x=0 and leaves at x=L with equal magnitude."],
+  "constitutive_closures": [
+    {"id": "C1", "name": "Fourier conduction", "relation": "q_x=-k dT/dx", "status": "assumed", "provenance": "Classical local isotropic conduction closure", "calibration_boundary": "k must be measured or independently sourced; it is not fitted to the predicted temperatures", "evidence_state": "assumed"}
+  ],
+  "frame_and_invariance": "The solid is stationary; translation of the spatial origin leaves the temperature gradient and heat flux unchanged. Relativistic transformations are irrelevant.",
+  "scale_analysis": {
+    "reference_scales": ["x_ref=L", "temperature difference DeltaT=T_H-T_C", "q_ref=k DeltaT/L"],
+    "dimensionless_groups": ["X=x/L", "theta=(T-T_C)/(T_H-T_C)"],
+    "ordering_parameters": ["Lateral-gradient/normal-gradient ratio is assumed negligible", "steady storage/conduction ratio is zero by problem definition"],
+    "expected_reduction_error": "Zero for the stated mathematical problem; physical error is controlled by violations of one-dimensionality, constant k, perfect boundary temperatures, and zero generation."
+  },
+  "assumptions": ["Steady state", "One-dimensional temperature field", "Constant positive k", "No volumetric generation", "Exact prescribed face temperatures"],
+  "exclusions": ["Transient thermal response", "Multidimensional edge effects", "Interfacial contact resistance", "Temperature-dependent or anisotropic conductivity"],
+  "baselines": ["Exact linear temperature solution of the constant-coefficient plane-wall problem"],
+  "calibration_boundary": "No parameter is calibrated to this solution; k, L, T_H, and T_C are independent inputs.",
+  "acceptance_criteria": ["d2T/dx2=0 everywhere", "T(0)=T_H and T(L)=T_C", "q_x is constant", "q_x>0 when T_H>T_C", "Energy inflow equals outflow"],
+  "falsification_cases": ["Measured curvature in T(x) beyond uncertainty", "Nonconstant q_x without declared source", "Sensitivity to lateral dimension inconsistent with one-dimensionality"],
+  "uncertainty_plan": "Propagate independent or covariant uncertainty in k, L, T_H, and T_C through q_x=k(T_H-T_C)/L.",
+  "benchmark_plan": ["Substitute the closed form into the ODE and boundary conditions", "Compare a numerical discretization against the exact linear profile if code is introduced"],
+  "provenance": ["All equations in this package are derived from steady energy conservation and the declared Fourier closure; no experimental validation is claimed."]
+}

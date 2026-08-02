@@ -41,7 +41,9 @@ Do not begin from a reduced textbook equation unless its assumptions are proved.
 ## Mechanism generator
 
 ```text
-Generate at least five genuinely different mechanisms for [problem contract].
+Generate three genuinely different mechanisms for a narrow question and at least
+five for a substantial new-theory search, unless the scoped physics rules out
+alternatives; state that reason when using fewer.
 Vary the governing competition rather than coefficients. For each mechanism,
 give the causal chain, balances and closures, dimensional scaling skeleton,
 distinctive prediction, failure regime, decisive test, and prior literature

@@ -100,6 +100,34 @@ For each moving interface, define its normal, velocity, surface storage, and jum
 
 Equal temperature, local saturation, no slip, no mass transfer, and mechanical equilibrium are separate assumptions. Do not collapse them into a generic `equilibrium interface` label.
 
+### Sign-explicit sharp-interface starting point
+
+For a liquid-vapor interface `Gamma(t)`, let `n` point from liquid `l` to vapor `v`, let `u_I` be the interface velocity, and define `[[a]] = a_v - a_l`. Define positive evaporation mass flux by
+
+```text
+m'' = rho_l (u_l - u_I) dot n = rho_v (u_v - u_I) dot n > 0.
+```
+
+With zero surface mass, momentum, and energy storage, the corresponding jump skeleton is
+
+```text
+[[rho (u - u_I) dot n]] = 0
+
+[[m'' u - sigma dot n]] = div_s(gamma P_s) + f_s
+
+[[m'' (e + |u|^2/2) - (sigma dot u) dot n + q dot n]] = q''_Gamma
+
+[[m'' s + J_s dot n]] = s''_Gamma + sigma''_Gamma,   sigma''_Gamma >= 0
+```
+
+Here `P_s = I - n tensor n`, `gamma` is surface tension, `f_s` is any additional declared surface force, `q''_Gamma` is declared interfacial energy supply, `J_s` is non-advective entropy flux, `s''_Gamma` is entropy supply, and `sigma''_Gamma` is interfacial entropy production. For constant `gamma` and curvature convention `kappa = div_s(n)`, `div_s(gamma P_s) = -gamma kappa n`; the static normal-momentum limit then gives `p_l - p_v = gamma kappa` for a spherical liquid domain with outward `n`.
+
+Do not insert `m'' h_fg = q''` independently of the total-energy jump. Derive the latent-heat form after declaring negligible kinetic/stress-work terms, pressure convention, property reference states, and any interfacial resistance. If surface excess mass, momentum, energy, or entropy is retained, add its material surface derivative and surface transport before reducing these equations.
+
+For a conjugate solid-fluid boundary with one common spatial normal and conductive heat flux `q = -k grad(T)`, zero interfacial energy storage requires continuity of normal total energy flux. Temperature continuity is an additional perfect-contact assumption. With an area-specific thermal contact resistance `R''_t`, use a sign-consistent relation such as `T_s - T_f = R''_t q_n` rather than imposing equal temperatures.
+
+At a three-phase contact line, state whether the contact angle is equilibrium, advancing/receding, or dynamically closed. Young's equilibrium force balance, a dynamic contact-angle law, precursor-film treatment, slip length, and contact-line evaporation are distinct closures; do not combine them implicitly.
+
 ## Balance-to-model hierarchy
 
 Record each transition explicitly:

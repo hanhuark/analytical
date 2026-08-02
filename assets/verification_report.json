@@ -1,0 +1,123 @@
+{
+  "schema_version": "2.0",
+  "model_status": "proposed",
+  "claim_ladder_rung": 1,
+  "overall_result": "not-run",
+  "gates": [
+    {
+      "id": "definitions_dimensions",
+      "check_performed": "REPLACE_ME",
+      "evidence": ["REPLACE_ME"],
+      "result": "not-run",
+      "severity": "none",
+      "required_action": "REPLACE_ME"
+    },
+    {
+      "id": "conservation_admissibility",
+      "check_performed": "REPLACE_ME",
+      "evidence": ["REPLACE_ME"],
+      "result": "not-run",
+      "severity": "none",
+      "required_action": "REPLACE_ME"
+    },
+    {
+      "id": "assumptions_scale_ordering",
+      "check_performed": "REPLACE_ME",
+      "evidence": ["REPLACE_ME"],
+      "result": "not-run",
+      "severity": "none",
+      "required_action": "REPLACE_ME"
+    },
+    {
+      "id": "frame_transformation_invariance",
+      "check_performed": "REPLACE_ME",
+      "evidence": ["REPLACE_ME"],
+      "result": "not-run",
+      "severity": "none",
+      "required_action": "REPLACE_ME"
+    },
+    {
+      "id": "limits_asymptotics",
+      "check_performed": "REPLACE_ME",
+      "evidence": ["REPLACE_ME"],
+      "result": "not-run",
+      "severity": "none",
+      "required_action": "REPLACE_ME"
+    },
+    {
+      "id": "baseline_recovery",
+      "check_performed": "REPLACE_ME",
+      "evidence": ["REPLACE_ME"],
+      "result": "not-run",
+      "severity": "none",
+      "required_action": "REPLACE_ME"
+    },
+    {
+      "id": "closures_identifiability",
+      "check_performed": "REPLACE_ME",
+      "evidence": ["REPLACE_ME"],
+      "result": "not-run",
+      "severity": "none",
+      "required_action": "REPLACE_ME"
+    },
+    {
+      "id": "algebra_code_numerics",
+      "check_performed": "REPLACE_ME",
+      "evidence": ["REPLACE_ME"],
+      "result": "not-run",
+      "severity": "none",
+      "required_action": "REPLACE_ME"
+    },
+    {
+      "id": "mathematical_prerequisites",
+      "check_performed": "REPLACE_ME",
+      "evidence": ["REPLACE_ME"],
+      "result": "not-run",
+      "severity": "none",
+      "required_action": "REPLACE_ME"
+    },
+    {
+      "id": "evidence_novelty",
+      "check_performed": "REPLACE_ME",
+      "evidence": ["REPLACE_ME"],
+      "result": "not-run",
+      "severity": "none",
+      "required_action": "REPLACE_ME"
+    },
+    {
+      "id": "calibration_external_validation",
+      "check_performed": "REPLACE_ME",
+      "evidence": ["REPLACE_ME"],
+      "result": "not-run",
+      "severity": "none",
+      "required_action": "REPLACE_ME"
+    },
+    {
+      "id": "discrimination_causality",
+      "check_performed": "REPLACE_ME",
+      "evidence": ["REPLACE_ME"],
+      "result": "not-run",
+      "severity": "none",
+      "required_action": "REPLACE_ME"
+    },
+    {
+      "id": "reporting_integrity",
+      "check_performed": "REPLACE_ME",
+      "evidence": ["REPLACE_ME"],
+      "result": "not-run",
+      "severity": "none",
+      "required_action": "REPLACE_ME"
+    }
+  ],
+  "blocking_findings": [
+    {
+      "id": "F1",
+      "gate_id": "REPLACE_ME",
+      "finding": "REPLACE_ME",
+      "severity": "major",
+      "required_action": "REPLACE_ME"
+    }
+  ],
+  "applicability_limitations": ["REPLACE_ME"],
+  "residual_risk": ["REPLACE_ME"]
+}

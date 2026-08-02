@@ -1,0 +1,57 @@
+{
+  "schema_version": "2.0",
+  "title": "Audit of the classical saturated pool-boiling hydrodynamic CHF scaling",
+  "decision_or_claim": "Determine what the classical Zuber-form scaling supports as a baseline and what evidence is still required before using it as a causal or predictive CHF model.",
+  "model_status": "derived",
+  "claim_ladder_rung": 3,
+  "evidence_state": "reported",
+  "event_definition": "Maximum sustained nucleate-boiling heat flux followed by an irreversible wall-temperature excursion under a declared quasi-static imposed-heat-flux protocol.",
+  "system_boundary": "Macroscale upward-facing heater, saturated liquid pool, vapor structures, liquid-vapor interface, and gravity field; the reduced scaling does not resolve the conjugate heater or near-wall microlayer.",
+  "regime": {
+    "description": "Saturated, gravity-dominated pool boiling on a macroscale upward-facing surface with negligible imposed bulk flow.",
+    "included": ["Saturation conditions", "Terrestrial or declared body force", "Macroscale unconfined pool", "Hydrodynamic baseline comparison"],
+    "excluded": ["Forced-flow DNB", "Annular-film dryout", "Microchannel confinement", "Subcooled boiling", "Transient power excursions", "Surface-wicking closures"]
+  },
+  "geometry_and_frame": "Horizontal upward-facing heated area of characteristic dimension L_h in a stationary laboratory frame; vertical gravity opposes vapor buoyancy.",
+  "materials_or_fluids": ["Pure or declared working fluid at saturation", "Heater surface whose effects are not represented by the classical property group"],
+  "operating_conditions": [
+    {"name": "saturation pressure", "range": "specified positive pressure away from an unexamined critical singularity", "unit": "Pa", "property_state": "saturation", "evidence_state": "assumed"},
+    {"name": "body acceleration", "range": "g>0", "unit": "m s^-2", "property_state": "laboratory field", "evidence_state": "assumed"},
+    {"name": "heater dimension", "range": "L_h/lambda_RT,d must be reported", "unit": "m", "property_state": "heated geometry", "evidence_state": "assumed"}
+  ],
+  "initial_conditions": ["Initially wetted saturated pool after a declared conditioning protocol; history dependence remains an applicability concern."],
+  "boundary_conditions": ["Quasi-static imposed heat-flux ramp on the heater", "Far field large enough for the declared pool approximation", "Gravity normal to the upward-facing surface"],
+  "dependent_variables": [
+    {"name": "critical heat flux", "symbol": "q''_CHF", "dimension": "M T^-3", "unit": "W m^-2", "sign_convention": "Positive from heater into fluid", "role": "terminal response", "property_state": "event-defined heat flux", "definition": "Heat flux at the declared boiling-crisis event", "evidence_state": "reported"},
+    {"name": "dimensionless CHF", "symbol": "Ku_CHF", "dimension": "1", "unit": "1", "sign_convention": "Positive", "role": "nondimensional response", "property_state": "saturation properties", "definition": "q''_CHF divided by the classical hydrodynamic property scale", "evidence_state": "derived"}
+  ],
+  "governing_variables": [
+    {"name": "latent enthalpy", "symbol": "h_fg", "dimension": "L^2 T^-2", "unit": "J kg^-1", "sign_convention": "Positive vaporization enthalpy", "role": "energy scale", "property_state": "declared saturation state", "definition": "Vapor minus liquid specific enthalpy", "evidence_state": "reported"},
+    {"name": "vapor density", "symbol": "rho_v", "dimension": "M L^-3", "unit": "kg m^-3", "sign_convention": "Positive", "role": "vapor mass scale", "property_state": "declared saturation state", "definition": "Saturated vapor density", "evidence_state": "reported"},
+    {"name": "liquid density", "symbol": "rho_l", "dimension": "M L^-3", "unit": "kg m^-3", "sign_convention": "rho_l>rho_v in scope", "role": "buoyancy scale", "property_state": "declared saturation state", "definition": "Saturated liquid density", "evidence_state": "reported"},
+    {"name": "surface tension", "symbol": "sigma", "dimension": "M T^-2", "unit": "N m^-1", "sign_convention": "Positive", "role": "capillary scale", "property_state": "saturation interface", "definition": "Liquid-vapor surface tension", "evidence_state": "reported"},
+    {"name": "body acceleration", "symbol": "g", "dimension": "L T^-2", "unit": "m s^-2", "sign_convention": "Positive magnitude opposite vapor buoyancy direction", "role": "body-force scale", "property_state": "laboratory field", "definition": "Acceleration magnitude", "evidence_state": "assumed"},
+    {"name": "heater dimension", "symbol": "L_h", "dimension": "L", "unit": "m", "sign_convention": "Positive", "role": "finite-domain parameter", "property_state": "heated geometry", "definition": "Smallest relevant heated lateral dimension", "evidence_state": "assumed"}
+  ],
+  "conservation_laws": ["Total mass transfer across the liquid-vapor interface", "Momentum balance with gravity, inertia, pressure, and surface tension", "Total energy balance connecting evaporation rate to heat input"],
+  "source_and_sink_terms": ["External heater supplies energy", "Gravity supplies body force but not mass", "Interphase mass/momentum/energy transfers cancel in the combined system"],
+  "constitutive_closures": [
+    {"id": "C1", "name": "Classical Zuber coefficient convention", "relation": "q''_CHF=(pi/24) h_fg rho_v^(1/2) [sigma g (rho_l-rho_v)]^(1/4)", "status": "reported", "provenance": "Zuber, AECU-4439, DOI 10.2172/4175511; exact source equation and convention must be checked", "calibration_boundary": "Do not refit pi/24 to target data and still call the result the classical baseline", "evidence_state": "reported"}
+  ],
+  "frame_and_invariance": "Stationary nonrelativistic laboratory frame; Galilean changes do not alter the property scale. Lorentz transformations are irrelevant because U/c is negligible.",
+  "scale_analysis": {
+    "reference_scales": ["capillary length l_c=[sigma/{g(rho_l-rho_v)}]^(1/2)", "hydrodynamic heat-flux scale h_fg rho_v^(1/2)[sigma g(rho_l-rho_v)]^(1/4)"],
+    "dimensionless_groups": ["Ku_CHF", "L_h/lambda_RT,d", "density ratio rho_v/rho_l"],
+    "ordering_parameters": ["Large unconfined pool", "Heater dimension relative to assumed hydrodynamic wavelength", "Negligible imposed flow and subcooling"],
+    "expected_reduction_error": "Not supplied by the classical scaling as a universal bound; quantify empirically by fluid, pressure, heater size, surface, and facility holdouts."
+  },
+  "assumptions": ["Saturated pool-boiling regime", "Gravity-capillary-inertial hydrodynamic control", "Macroscale unconfined geometry", "Property evaluation at one declared saturation state", "Surface and conjugate-heater effects are secondary for the baseline"],
+  "exclusions": ["Using the baseline as proof of a universal trigger", "Mixing flow-boiling or dryout data into pool-boiling validation", "Fitting the coefficient on validation cases"],
+  "baselines": ["Zuber-form hydrodynamic property scaling with separately declared coefficient convention"],
+  "calibration_boundary": "The classical coefficient is fixed before comparison; any correction or surface factor defines a different calibrated model.",
+  "acceptance_criteria": ["Dimensional consistency", "Exact source/convention traceability", "Declared saturation property states", "Finite-heater ratio reported", "Intermediate wavelength/growth prediction tested before causal attribution", "Independent pool-boiling holdouts for predictive claims"],
+  "falsification_cases": ["Observed dominant structure inconsistent with predicted hydrodynamic scale", "Strong heater-size dependence not captured by L_h/lambda_RT,d", "Surface or substrate intervention changes CHF while the bulk property scale remains nearly fixed", "Failure on sealed cross-fluid or pressure cases"],
+  "uncertainty_plan": "Propagate covariance in h_fg, densities, surface tension, gravity, event detection, and heat flux; keep property and experimental uncertainty separate from model-form discrepancy.",
+  "benchmark_plan": ["Verify the source equation and coefficient convention", "Check dimensions and gravity/capillary limits", "Use saturated pool-boiling data separated by fluid, pressure, surface, heater geometry, and laboratory", "Compare predicted wavelength and intermediate topology before terminal CHF"],
+  "provenance": ["Primary baseline source: Zuber 1959, DOI 10.2172/4175511", "Property starting source: NIST Chemistry WebBook SRD 69", "This example is an audit artifact, not new CHF evidence"]
+}

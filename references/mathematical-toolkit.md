@@ -2,6 +2,15 @@
 
 Choose mathematics after defining the physical balance and desired prediction. State prerequisites and inversion, uniqueness, convergence, and conditioning requirements.
 
+## Contents
+
+- [Tool-selection map](#tool-selection-map)
+- [Method output contract](#method-output-contract)
+- [Worked selection patterns](#worked-selection-patterns)
+- [Core methods](#core-methods)
+- [Open learning and reference resources](#open-learning-and-reference-resources)
+- [Open computational tools](#open-computational-tools)
+
 ## Tool-selection map
 
 | Physical or analytical need | Candidate tools | Required checks |
@@ -23,6 +32,38 @@ Choose mathematics after defining the physical balance and desired prediction. S
 | Model variability or rare events | Probability, stochastic processes, Fokker-Planck, first passage, extreme-value theory | Stationarity, dependence, tail support, sample size, censoring |
 | Model connectivity or morphology | Graph theory, percolation, topology, Minkowski functionals | Resolution dependence, finite-size scaling, causal interpretation |
 | Transform frames and exploit symmetry | Galilean/rotating coordinates, Lie symmetries, dimensional invariance, Lorentz transformations | Preserved invariant, transformation domain, physical relevance |
+
+## Method output contract
+
+For every selected method record:
+
+1. the physical question and governing equation it answers;
+2. the independent/dependent variables, domain, initial/boundary data, and function space;
+3. the small parameter, invariant, linear operator, transform convention, or optimization objective introduced;
+4. existence, uniqueness, convergence, inversion, regularity, and conditioning requirements that matter;
+5. the observable prediction or bound produced;
+6. substitution, differentiation, dimensional, limiting-case, or independent numerical checks;
+7. the regime or mathematical failure that invalidates the result.
+
+Do not count naming a transform, theorem, or software package as analysis.
+
+## Worked selection patterns
+
+### Transient one-dimensional conduction
+
+For `partial T/partial t = alpha partial^2 T/partial x^2`, select separation/eigenfunctions for a finite domain with homogeneous linear boundary conditions, or Laplace transforms for causal boundary forcing. First homogenize nonzero boundary data, define the Fourier number, check eigenfunction completeness, and recover both the initial condition and the steady limit. A closed series whose boundary terms or initial trace fail is not a solution.
+
+### Advected thin-film depletion
+
+For a reduced balance `partial h/partial t + c(h,x,t) partial h/partial x = S(h,x,t)`, use characteristics only while the characteristic map remains single-valued and the reduction preserves mass. Track boundary characteristics, positivity of `h`, and the first crossing or dryout singularity. If capillarity introduces a fourth-order spatial term, the first-order characteristic solution no longer supplies the required boundary conditions.
+
+### Linear instability threshold
+
+Linearize about a separately verified base state, define perturbation norm and admissible modes, and derive the dispersion or generalized eigenvalue problem. Check non-normal transient growth and finite-domain spectra before equating a modal neutral curve with physical transition. Recover the relevant capillary, gravity, viscous, or geometric limit and identify a measurable wavelength/growth rate—not only a fitted terminal threshold.
+
+### Frame-transformation screen
+
+For an ordinary thermal-fluid speed `U`, estimate `(U/c)^2` against the required relative accuracy. If it is negligible and electrodynamic covariance is not central, reject a Lorentz transformation and use Galilean or rotating-frame kinematics. Documenting why an elegant method is inapplicable is a valid analytical result.
 
 ## Core methods
 

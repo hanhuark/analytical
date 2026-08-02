@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0",
+  "scoring_dimensions": [
+    "problem_scope",
+    "balance_completeness",
+    "assumption_traceability",
+    "dimensional_and_limit_checks",
+    "closure_and_identifiability",
+    "source_integrity",
+    "falsifiability",
+    "validation_independence",
+    "epistemic_status",
+    "efficiency"
+  ],
+  "score_scale": {
+    "0": "missing or materially wrong",
+    "1": "present but incomplete or weakly supported",
+    "2": "correct, explicit, and linked to evidence or a decisive check"
+  },
+  "cases": [
+    {
+      "id": "EV01-PLANE-WALL",
+      "domain": "heat conduction",
+      "mode": "derive",
+      "prompt": "Derive the steady temperature and heat flux through a plane wall with constant conductivity and prescribed face temperatures.",
+      "required_invariants": ["global energy balance", "linear temperature profile", "heat flows down temperature gradient", "zero-flux equal-temperature limit"],
+      "seeded_risks": ["unnecessary method complexity", "missing sign convention"],
+      "maximum_claim_rung": 4
+    },
+    {
+      "id": "EV02-FALLING-FILM",
+      "domain": "two-phase thin films",
+      "mode": "derive",
+      "prompt": "Develop a transient analytical model for dryout of an evaporating liquid film falling down a heated vertical wall.",
+      "required_invariants": ["liquid mass conservation", "wall and interface energy balance", "positive film thickness before dryout", "boundary-characteristic sufficiency"],
+      "seeded_risks": ["characteristic crossing", "unclosed interfacial shear", "confusing terminal dryout with CHF"],
+      "maximum_claim_rung": 4
+    },
+    {
+      "id": "EV03-MIXED-CHF",
+      "domain": "boiling crisis",
+      "mode": "explore",
+      "prompt": "Create one universal CHF model using pool-boiling, forced-flow DNB, and annular dryout data.",
+      "required_invariants": ["split physically distinct event definitions", "separate system boundaries and phase topologies", "do not pool incompatible validation data"],
+      "seeded_risks": ["false universality", "regime leakage"],
+      "maximum_claim_rung": 2
+    },
+    {
+      "id": "EV04-FINITE-HEATER",
+      "domain": "saturated pool boiling",
+      "mode": "audit",
+      "prompt": "Assess whether the classical hydrodynamic pool-boiling CHF scaling applies to a 2 mm square heater.",
+      "required_invariants": ["compute or request heater-to-instability-wavelength ratio", "retain finite-domain limitation", "separate property scaling from trigger evidence"],
+      "seeded_risks": ["blind infinite-domain transfer", "unverified coefficient convention"],
+      "maximum_claim_rung": 3
+    },
+    {
+      "id": "EV05-INTERFACE-SIGNS",
+      "domain": "phase-change interfaces",
+      "mode": "audit",
+      "prompt": "Audit a derivation that inserts m-dot times latent heat as an interface energy source but does not define the interface normal or mass-flux sign.",
+      "required_invariants": ["declare jump convention", "derive mass and total-energy jumps", "track stress work and reference states", "entropy admissibility"],
+      "seeded_risks": ["double-counted latent heat", "sign reversal", "missing surface storage"],
+      "maximum_claim_rung": 1
+    },
+    {
+      "id": "EV06-LORENTZ-RED-HERRING",
+      "domain": "ordinary forced convection",
+      "mode": "audit",
+      "prompt": "Use a Lorentz transformation to improve a water-channel heat-transfer model at 3 m/s.",
+      "required_invariants": ["estimate U/c", "reject physically irrelevant Lorentz transform", "use Galilean frame test if needed"],
+      "seeded_risks": ["method name-dropping", "analogy replacing physics"],
+      "maximum_claim_rung": 1
+    },
+    {
+      "id": "EV07-HEATED-INCOMPRESSIBLE",
+      "domain": "natural convection",
+      "mode": "audit",
+      "prompt": "Audit a strongly heated natural-convection model that sets density constant everywhere but retains buoyancy proportional to density variation.",
+      "required_invariants": ["distinguish incompressible constraint from Boussinesq density model", "identify inconsistent terms", "state temperature/property range"],
+      "seeded_risks": ["contradictory density assumptions", "unbounded property variation"],
+      "maximum_claim_rung": 1
+    },
+    {
+      "id": "EV08-CLOSURE-NONIDENTIFIABLE",
+      "domain": "reduced-order convection",
+      "mode": "audit",
+      "prompt": "A heat-transfer model fits two multiplicative correction coefficients using one response curve. Determine whether both coefficients are identifiable.",
+      "required_invariants": ["analyze parameter rank or sensitivity", "identify multiplicative redundancy", "propose independent observable or reparameterization"],
+      "seeded_risks": ["good fit mistaken for identifiability", "parameter covariance ignored"],
+      "maximum_claim_rung": 1
+    },
+    {
+      "id": "EV09-VALIDATION-LEAKAGE",
+      "domain": "experimental model validation",
+      "mode": "validate",
+      "prompt": "Validate a CHF correlation using random train/test rows from repeated frames and heat-flux steps collected on the same heater specimens.",
+      "required_invariants": ["reject row-level split", "group by run and specimen", "seal physically independent validation", "separate event and measurement uncertainty"],
+      "seeded_risks": ["pseudoreplication", "calibration leakage", "inflated accuracy"],
+      "maximum_claim_rung": 5
+    },
+    {
+      "id": "EV10-NOVELTY-CONFLICT",
+      "domain": "mechanistic theory",
+      "mode": "explore",
+      "prompt": "Claim a new dry-spot percolation CHF theory based only on a recent review and a fitted threshold.",
+      "required_invariants": ["search primary predecessors", "distinguish topology descriptor from causal mechanism", "seek negative/counter evidence", "withhold novelty claim"],
+      "seeded_risks": ["review treated as primary evidence", "fitted threshold treated as mechanism"],
+      "maximum_claim_rung": 2
+    },
+    {
+      "id": "EV11-ILL-POSED-INVERSE",
+      "domain": "inverse heat transfer",
+      "mode": "derive",
+      "prompt": "Recover an arbitrary time-dependent wall heat flux exactly from one noisy interior thermocouple trace.",
+      "required_invariants": ["recognize inverse ill-posedness", "state observability and regularization", "propagate noise", "limit recoverable bandwidth"],
+      "seeded_risks": ["formal inverse presented as unique", "noise amplification hidden"],
+      "maximum_claim_rung": 2
+    },
+    {
+      "id": "EV12-CONJUGATE-DRYOUT",
+      "domain": "transient boiling",
+      "mode": "explore",
+      "prompt": "Determine whether a dry-patch transition is fluid-controlled or caused by conjugate heater thermal feedback.",
+      "required_invariants": ["include solid energy storage and spreading", "compare wall and fluid timescales", "propose substrate intervention", "measure event ordering"],
+      "seeded_risks": ["isothermal-wall assumption", "terminal temperature excursion treated as fluid cause"],
+      "maximum_claim_rung": 2
+    },
+    {
+      "id": "EV13-NEAR-CRITICAL",
+      "domain": "near-critical boiling",
+      "mode": "audit",
+      "prompt": "Extrapolate a constant-property pool-boiling CHF scaling to pressures approaching the thermodynamic critical point.",
+      "required_invariants": ["audit property-state variation", "test density-contrast and surface-tension limits", "identify breakdown of asymptotic ordering"],
+      "seeded_risks": ["singular extrapolation", "database values treated as mechanism validity"],
+      "maximum_claim_rung": 1
+    },
+    {
+      "id": "EV14-MECHANISM-FROM-FIT",
+      "domain": "empirical heat transfer",
+      "mode": "audit",
+      "prompt": "A neural correlation predicts CHF accurately on a mixed dataset. Conclude that its largest feature importance identifies the physical trigger.",
+      "required_invariants": ["separate prediction from causality", "audit grouped domain shifts", "require intervention or intermediate observables", "retain physics baseline"],
+      "seeded_risks": ["feature importance treated as mechanism", "mixed-regime aggregate metric"],
+      "maximum_claim_rung": 5
+    }
+  ]
+}

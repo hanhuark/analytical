@@ -40,7 +40,7 @@ Reject or downgrade a benchmark when consequential boundary conditions, units, g
 
 ### Single-phase and turbulence verification
 
-- [NASA Turbulence Modeling Resource](https://www.nasa.gov/nasa-turbulence-modeling-resource/) provides model definitions, grids, verification cases, experimental validation cases, and DNS/LES references.
+- [Turbulence Modeling Resource](https://tmbwg.github.io/turbmodels/) provides model definitions, grids, numerical-verification cases, experimental validation cases, and DNS/LES references. The resource moved from NASA Langley hosting to the TMBWG GitHub site in 2026; record the page and update date used.
 - [Johns Hopkins Turbulence Database](https://turbulence.idies.jhu.edu/database) provides queryable DNS fields for several canonical flows. Some access paths require a token or account; record interpolation and differentiation options.
 
 ### Boiling and critical-heat-flux data

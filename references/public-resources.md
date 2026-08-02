@@ -2,6 +2,8 @@
 
 Use this atlas as a verified starting set, not an exhaustive or permanently current bibliography. Recheck access, version, licensing, and the actual supporting passage when a resource is used. Last curated: 2026-08-02.
 
+For automated identity and staleness checks, use the companion [public-resource-registry.json](public-resource-registry.json). Copy only selected, problem-relevant entries into the analysis package and recheck their supporting content; the registry is discovery infrastructure, not frozen evidence.
+
 ## Evidence and access classes
 
 Record one access state for every source:
@@ -57,7 +59,7 @@ Use these for definitions and derivation support. Use original papers and curren
 | [OpenFOAM wall-boiling documentation](https://doc.openfoam.com/2606/tools/processing/boundary-conditions/rtm/derived/multiphase/alphatWallBoilingWallFunction/) | RPI-style heat-flux partitioning and selectable nucleation, departure, CHF, transition, and film-boiling submodels | Enumerate closures, coefficients, regime switches, and implementation assumptions |
 | [MOOSE Navier-Stokes module](https://mooseframework.inl.gov/moose/modules/navier_stokes/intro/index.html) | Compressible, incompressible, porous, flow, and energy equations in an open multiphysics framework | Compare strong/weak forms, variables, closures, and boundary conditions |
 | [NETL MFiX](https://mfix.netl.doe.gov/products/mfix/) | Open multiphase-flow models with theory guides, conservation equations, and constitutive relations | Audit averaging assumptions, interphase closures, and model hierarchy |
-| [NASA Turbulence Modeling Resource](https://www.nasa.gov/nasa-turbulence-modeling-resource/) | Public turbulence-model definitions and verification/validation cases | Verify exact model equations and test implementation/baseline behavior |
+| [Turbulence Modeling Resource](https://tmbwg.github.io/turbmodels/) | Public turbulence-model definitions and numerical-verification/experimental-validation cases | The resource moved from NASA Langley hosting to the TMBWG GitHub site in 2026; verify exact model equations, page version, and case provenance |
 | [CoolProp](https://coolprop.org/) | Open thermophysical-property library based on documented formulations | Reproduce property evaluation while retaining source, state, and version |
 | [NRC NUREG collections](https://www.nrc.gov/reading-rm/doc-collections/nuregs/pubs/index) | Public code manuals, assessments, and safety research | Locate TRACE/RELAP and experiment assessments; verify exact report and version |
 

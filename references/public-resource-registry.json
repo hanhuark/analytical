@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "last_curated": "2026-08-02",
+  "resources": [
+    {
+      "id": "RES-ZUBER-1959",
+      "title": "Hydrodynamic Aspects of Boiling Heat Transfer",
+      "stable_url": "https://doi.org/10.2172/4175511",
+      "persistent_id": "DOI 10.2172/4175511; AECU-4439",
+      "source_type": "primary technical report",
+      "access_state": "open-full-text",
+      "domain": "saturated pool-boiling hydrodynamic theory",
+      "exact_use": "Trace the classical hydrodynamic CHF derivation and coefficient convention",
+      "evidence_limit": "Does not establish universality across forced flow, confinement, surface structures, or conjugate heaters",
+      "license_or_reuse": "Link and cite; verify record-specific reuse terms before redistribution",
+      "last_checked": "2026-08-02"
+    },
+    {
+      "id": "RES-NIST-WEBBOOK",
+      "title": "NIST Chemistry WebBook SRD 69: Thermophysical Properties of Fluid Systems",
+      "stable_url": "https://webbook.nist.gov/chemistry/fluid/",
+      "persistent_id": "NIST SRD 69",
+      "source_type": "property database",
+      "access_state": "open-data",
+      "domain": "fluid thermophysical properties",
+      "exact_use": "Reproduce declared density, energy, viscosity, conductivity, sound-speed, and saturation-surface-tension states where available",
+      "evidence_limit": "A property query does not validate a transport or CHF mechanism; archive query conditions and state convention",
+      "license_or_reuse": "Verify NIST database terms and attribution for redistributed extracts",
+      "last_checked": "2026-08-02"
+    },
+    {
+      "id": "RES-TMBWG-TMR",
+      "title": "Turbulence Modeling Resource",
+      "stable_url": "https://tmbwg.github.io/turbmodels/",
+      "persistent_id": "TMBWG public site and GitHub repository",
+      "source_type": "model documentation and benchmark collection",
+      "access_state": "open-full-text",
+      "domain": "RANS-model implementation verification and selected flow validation",
+      "exact_use": "Check exact turbulence-model variants, grids, verification cases, and linked experimental/DNS/LES cases",
+      "evidence_limit": "The site explicitly does not validate models for all complex application flows",
+      "license_or_reuse": "Individual datasets retain source-specific terms; verify before redistribution",
+      "last_checked": "2026-08-02"
+    },
+    {
+      "id": "RES-KTH-HWAT-2025",
+      "title": "KTH/HWAT boiling two-phase-flow databank",
+      "stable_url": "https://doi.org/10.5281/zenodo.14627088",
+      "persistent_id": "DOI 10.5281/zenodo.14627088",
+      "source_type": "experimental dataset",
+      "access_state": "open-data",
+      "domain": "LWR-relevant boiling flow",
+      "exact_use": "Evaluate flow-boiling boundary conditions and reported axial/radial measurements",
+      "evidence_limit": "Do not treat flow-boiling evidence as saturated pool-boiling validation",
+      "license_or_reuse": "Verify the dataset version and license on the Zenodo record",
+      "last_checked": "2026-08-02"
+    },
+    {
+      "id": "RES-KAERI-CHF-2026",
+      "title": "KAERI uniform and non-uniform heating CHF collection",
+      "stable_url": "https://doi.org/10.5281/zenodo.18404759",
+      "persistent_id": "DOI 10.5281/zenodo.18404759",
+      "source_type": "secondary digitized experimental collection",
+      "access_state": "open-data",
+      "domain": "water tube-flow CHF",
+      "exact_use": "Screen tube-flow CHF predictions across heating profiles",
+      "evidence_limit": "Verify definitions, corrections, and consequential values against KAERI/TR-1665/2000",
+      "license_or_reuse": "Verify the dataset version and license on the Zenodo record",
+      "last_checked": "2026-08-02"
+    },
+    {
+      "id": "RES-COOLPROP",
+      "title": "CoolProp",
+      "stable_url": "https://coolprop.org/",
+      "persistent_id": "Versioned open-source project",
+      "source_type": "property software",
+      "access_state": "open-code",
+      "domain": "thermophysical-property evaluation",
+      "exact_use": "Reproduce versioned property calculations and sensitivity studies",
+      "evidence_limit": "Cite the underlying property formulation and cross-check consequential states independently",
+      "license_or_reuse": "Use the license attached to the exact software version",
+      "last_checked": "2026-08-02"
+    },
+    {
+      "id": "RES-BIPM-JCGM",
+      "title": "BIPM/JCGM metrology guides",
+      "stable_url": "https://www.bipm.org/en/publications/guides",
+      "persistent_id": "Version-specific JCGM publication identifier",
+      "source_type": "metrology guidance",
+      "access_state": "open-full-text",
+      "domain": "measurement uncertainty and propagation",
+      "exact_use": "Define uncertainty vocabulary, propagation, and reporting appropriate to the experiment",
+      "evidence_limit": "Select and cite the exact guide/version; guidance does not supply experiment-specific uncertainty values",
+      "license_or_reuse": "Link and cite the selected publication; verify reproduction terms",
+      "last_checked": "2026-08-02"
+    }
+  ]
+}

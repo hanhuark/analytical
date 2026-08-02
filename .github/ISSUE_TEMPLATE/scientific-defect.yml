@@ -1,0 +1,72 @@
+name: Scientific or validation defect
+description: Report a balance, assumption, source, schema, or verification problem
+title: "[defect] "
+labels: ["scientific-defect"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Do not include confidential research, restricted data, credentials, reviewer identities,
+        student records, or unpublished sponsor-controlled material.
+  - type: input
+    id: version
+    attributes:
+      label: Skill version or commit
+      placeholder: v0.1.0 or commit hash
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Conservation or dimensions
+        - Assumption or closure
+        - Interface or boundary condition
+        - Mathematical method
+        - Source or benchmark
+        - Validation or leakage
+        - Schema, scaffold, or validator
+        - Trigger or workflow
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Proposed severity
+      options:
+        - fatal
+        - major
+        - repairable
+        - applicability-limiting
+        - minor
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and physical scope
+      description: State the system, regime, equation/term, units, frame, and affected claim.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction and evidence
+      description: Give a minimal prompt/package, commands, source passages, and observed output.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected invariant or behavior
+      description: State the balance, limit, schema rule, or evidence requirement that should hold.
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Data and rights check
+      options:
+        - label: I have not included confidential or restricted material and may share the attached evidence.
+          required: true

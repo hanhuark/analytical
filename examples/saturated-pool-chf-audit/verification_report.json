@@ -1,0 +1,122 @@
+{
+  "schema_version": "2.0",
+  "model_status": "derived",
+  "claim_ladder_rung": 3,
+  "overall_result": "qualified-pass",
+  "gates": [
+    {
+      "id": "definitions_dimensions",
+      "check_performed": "Recomputed dimensions of the hydrodynamic property group and audited variable state/sign definitions.",
+      "evidence": ["problem_contract.json dependent/governing variables", "model_card.md dimensional check"],
+      "result": "pass",
+      "severity": "none",
+      "required_action": "none"
+    },
+    {
+      "id": "conservation_admissibility",
+      "check_performed": "Mapped the terminal scaling to required combined-system mass, momentum, energy, and interface-transfer ancestry.",
+      "evidence": ["balance_audit.md conserved-quantity table and interface-transfer section"],
+      "result": "pass",
+      "severity": "minor",
+      "required_action": "Reconstruct the full source derivation before modifying the mechanism."
+    },
+    {
+      "id": "assumptions_scale_ordering",
+      "check_performed": "Linked regime, finite-domain, property-state, surface, and conjugate assumptions to affected terms and proposed observables.",
+      "evidence": ["assumption_ledger.md A1-A5", "balance_audit.md nondimensional table"],
+      "result": "fail",
+      "severity": "applicability-limiting",
+      "required_action": "Quantify finite-size, viscosity, surface, and wall-response orderings for each intended application."
+    },
+    {
+      "id": "frame_transformation_invariance",
+      "check_performed": "Checked the stationary gravity-aligned nonrelativistic frame and rejected decorative relativistic transformations.",
+      "evidence": ["problem_contract.json frame_and_invariance", "balance_audit.md frames section"],
+      "result": "pass",
+      "severity": "none",
+      "required_action": "none"
+    },
+    {
+      "id": "limits_asymptotics",
+      "check_performed": "Inspected gravity, surface-tension, density-contrast, and finite-heater limits of the reported scaling.",
+      "evidence": ["model_card.md limiting-cases section", "problem_contract.json scale_analysis"],
+      "result": "pass",
+      "severity": "minor",
+      "required_action": "Treat reduced gravity and near-critical density contrast as new scopes rather than extrapolations."
+    },
+    {
+      "id": "baseline_recovery",
+      "check_performed": "Preserved the stated Zuber-form coefficient and property group without fitting target cases.",
+      "evidence": ["problem_contract.json closure C1", "resource_register.md R1"],
+      "result": "pass",
+      "severity": "none",
+      "required_action": "Verify the exact source equation and coefficient convention for every consequential use."
+    },
+    {
+      "id": "closures_identifiability",
+      "check_performed": "Separated the fixed reported coefficient from independently sourced fluid properties and unmodeled surface/wall closures.",
+      "evidence": ["problem_contract.json constitutive_closures", "assumption_ledger.md A4-A5"],
+      "result": "fail",
+      "severity": "applicability-limiting",
+      "required_action": "Do not absorb surface, geometry, and facility effects into a refitted universal coefficient."
+    },
+    {
+      "id": "algebra_code_numerics",
+      "check_performed": "Checked exponents, positivity conditions, coefficient declaration, and wavelength expression symbolically; no numerical implementation was claimed.",
+      "evidence": ["model_card.md equations and dimensional checks"],
+      "result": "pass",
+      "severity": "none",
+      "required_action": "Archive property queries and independent recomputation when numerical cases are added."
+    },
+    {
+      "id": "mathematical_prerequisites",
+      "check_performed": "Identified base-state, admissible-mode, dispersion, and finite-domain requirements behind the hydrodynamic interpretation.",
+      "evidence": ["model_card.md mathematical-method section", "balance_audit.md boundary sufficiency"],
+      "result": "pass",
+      "severity": "minor",
+      "required_action": "Use a finite-domain eigenproblem when the heater is not large relative to the assumed wavelength."
+    },
+    {
+      "id": "evidence_novelty",
+      "check_performed": "Verified the public identity of the Zuber report and explicitly rejected any novelty claim for the classical result.",
+      "evidence": ["evidence_map.md E1-E2", "resource_register.md R1-R2"],
+      "result": "pass",
+      "severity": "none",
+      "required_action": "Read and cite the exact supporting passage before publication."
+    },
+    {
+      "id": "calibration_external_validation",
+      "check_performed": "Checked whether a sealed, independently grouped saturated pool-boiling dataset had been evaluated.",
+      "evidence": ["model_card.md validation-evidence section", "problem_contract.json benchmark_plan"],
+      "result": "fail",
+      "severity": "applicability-limiting",
+      "required_action": "Evaluate sealed pool-boiling cases grouped by fluid, pressure, surface, geometry, specimen, and laboratory before predictive promotion."
+    },
+    {
+      "id": "discrimination_causality",
+      "check_performed": "Compared terminal-CHF agreement with the intermediate observables required to distinguish hydrodynamic, supply, topology, contact-line, and wall-feedback mechanisms.",
+      "evidence": ["problem_contract.json falsification_cases", "model_card.md smallest-next-test section"],
+      "result": "fail",
+      "severity": "applicability-limiting",
+      "required_action": "Measure wavelength/growth, liquid inventory, dry-area topology, and wall timing under a discriminating intervention."
+    },
+    {
+      "id": "reporting_integrity",
+      "check_performed": "Compared the claim rung, evidence state, exclusions, unrun empirical work, and residual risk across all audit artifacts.",
+      "evidence": ["model_card.md status and known-failures sections", "verification_report.json overall_result"],
+      "result": "pass",
+      "severity": "none",
+      "required_action": "Retain the qualified baseline status until new evidence closes the failed gates."
+    }
+  ],
+  "blocking_findings": [],
+  "applicability_limitations": [
+    "The terminal scaling does not represent finite-heater, surface, near-wall liquid-supply, or conjugate-wall mechanisms.",
+    "No sealed independent saturated pool-boiling validation dataset was evaluated in this example.",
+    "Terminal CHF agreement alone cannot identify the hydrodynamic trigger."
+  ],
+  "residual_risk": [
+    "Coefficient and wavelength conventions can be transferred incorrectly if the primary source is not checked.",
+    "A fitted correction can hide domain shift and create a false universal mechanism claim."
+  ]
+}

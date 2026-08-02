@@ -7,6 +7,7 @@
 - [Boiling-crisis scoping](#boiling-crisis-scoping)
 - [Mandatory pool-boiling baseline](#mandatory-pool-boiling-baseline)
 - [Candidate mechanism families](#candidate-mechanism-families)
+- [Mechanism-specific falsification signatures](#mechanism-specific-falsification-signatures)
 - [CHF validation variables](#chf-validation-variables)
 - [Decisive checks](#decisive-checks)
 
@@ -69,6 +70,18 @@ Ku_CHF = q''_CHF /
 
 Use this as a benchmark, not as proof that hydrodynamic instability triggers every crisis.
 
+Trace the convention to the primary source. A public starting point is Zuber's 1959 report, [*Hydrodynamic Aspects of Boiling Heat Transfer*](https://doi.org/10.2172/4175511), report AECU-4439. The commonly quoted infinite-horizontal-surface Zuber convention uses `C_Z = pi/24` (about `0.131`), but coefficient definitions differ with geometry, wavelength construction, and property convention; verify the exact equation in the source used rather than transferring the number by memory.
+
+For the inviscid Rayleigh-Taylor wavelength convention used in many hydrodynamic CHF discussions, record
+
+```text
+lambda_RT,d = 2 pi [3 sigma / {g (rho_l - rho_v)}]^(1/2)
+```
+
+as a model-specific most-dangerous wavelength, not a universal observed bubble spacing. Also record the capillary length `l_c = [sigma/{g(rho_l-rho_v)}]^(1/2)` and the finite-heater ratio `L_h/lambda_RT,d`. When the heated dimension is not large compared with the assumed cell wavelength, the infinite-periodic-domain construction requires a finite-domain stability calculation or an applicability limitation.
+
+Before numerical evaluation, archive the fluid-property query, saturation temperature or pressure, reference-state convention, units, and source version. Public NIST WebBook values or a versioned property library can reproduce the property state, but neither validates the CHF mechanism.
+
 ## Candidate mechanism families
 
 Consider, without presuming equivalence:
@@ -85,6 +98,20 @@ Consider, without presuming equivalence:
 - imposed-flow entrainment, deposition, and film depletion.
 
 Require every proposed bridge to explain an observable and to survive a novelty search. A cross-domain analogy is not a mechanism until mapped to dimensional physical variables and balances.
+
+## Mechanism-specific falsification signatures
+
+| Mechanism family | Intermediate prediction required before terminal CHF | Example discriminating intervention or failure signature |
+|---|---|---|
+| Far-field hydrodynamic instability | Dominant vapor/liquid structure wavelength and growth rate consistent with the stated dispersion relation | Change heater dimension relative to `lambda_RT,d`; failure of wavelength or finite-size prediction weakens the mechanism even if terminal CHF is fitted |
+| Macrolayer or liquid-supply depletion | Measured liquid inventory or film thickness reaches a predeclared depletion condition before wall-temperature excursion | Change replenishment path while holding the classical property group nearly fixed |
+| Dry-spot growth and connectivity | Dry-area clusters acquire a predicted size/connectivity transition before the terminal event | Change field of view/heater area and test finite-size scaling; a terminal threshold without the predicted topology is insufficient |
+| Contact-line evaporation or vapor recoil | Local evaporation flux, contact-line density, and interfacial momentum scale predict where irreversible dry growth begins | Modify contact-line availability or local heat spreading while monitoring the intermediate response, not only CHF |
+| Capillary wicking | Independently measured permeability/capillary-pressure/liquid-supply relation predicts rewetting capacity | Alter wick geometry or orientation at comparable bulk fluid properties; fitted wettability alone is not a transport closure |
+| Conjugate heater feedback | Wall-temperature mode, substrate diffusion time, or effusivity predicts dry-patch survival and runaway | Change substrate thickness, effusivity, or power protocol while preserving the nominal boiling condition |
+| Stochastic finite-area trigger | Event-time or maximum-dry-cluster distribution scales with area and observation time | Test independent heaters/runs and censored waiting times; frames within one run are not independent replicates |
+
+A mechanism survives only when its intermediate prediction, timing, and intervention response are supported within uncertainty. Agreement with `q''_CHF` alone is not causal validation.
 
 ## CHF validation variables
 

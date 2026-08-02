@@ -2,6 +2,10 @@
 
 Use this contract before generating a new analytical model. Unknown information may remain `unknown`, but it must not be silently assumed.
 
+Instantiate `assets/problem_contract.json` with `schema_version` `2.0`. Preserve every required field and keep `model_status` consistent with `claim_ladder_rung`. Record closures as structured `C<number>` objects with relation, status, provenance, calibration boundary, and evidence state; do not collapse them into an untraceable list of names.
+
+Version `1.1` contracts are not silently promoted. Regenerate a scaffold or migrate explicitly by adding model status/rung, full dimension/sign/role/property fields to both variable groups, property state to operating conditions, and structured closure records. Revalidate every migrated field; schema conversion is not scientific verification.
+
 ## Required definition
 
 1. **Decision or claim**: State exactly what the model must predict, bound, explain, or discriminate.

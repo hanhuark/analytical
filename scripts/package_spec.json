@@ -1,0 +1,225 @@
+{
+  "package_schema_version": "2.0",
+  "supported_contract_schema_versions": ["2.0"],
+  "supported_verification_schema_versions": ["2.0"],
+  "evidence_states": [
+    "measured",
+    "reported",
+    "simulated",
+    "derived",
+    "assumed",
+    "inferred",
+    "illustrative",
+    "screening-level",
+    "proposed",
+    "independently-validated",
+    "unknown"
+  ],
+  "closure_statuses": ["derived", "measured", "reported", "correlated", "fitted", "assumed", "unknown"],
+  "model_statuses": [
+    "proposed",
+    "derived",
+    "calibrated",
+    "internally-verified",
+    "validated-in-domain",
+    "independently-validated"
+  ],
+  "model_status_rungs": {
+    "proposed": [1, 2],
+    "derived": [3, 4],
+    "calibrated": [5],
+    "internally-verified": [6],
+    "validated-in-domain": [7],
+    "independently-validated": [8]
+  },
+  "gate_results": ["pass", "fail", "not-run", "not-applicable", "blocked"],
+  "overall_results": ["pass", "qualified-pass", "fail", "not-run", "blocked"],
+  "severities": ["none", "minor", "repairable", "applicability-limiting", "major", "fatal"],
+  "blocking_severities": ["major", "fatal"],
+  "gates": [
+    {"id": "definitions_dimensions", "title": "Definitions and dimensions"},
+    {"id": "conservation_admissibility", "title": "Conservation and admissibility"},
+    {"id": "assumptions_scale_ordering", "title": "Assumptions and scale ordering"},
+    {"id": "frame_transformation_invariance", "title": "Frame, transformation, and invariance"},
+    {"id": "limits_asymptotics", "title": "Limits and asymptotics"},
+    {"id": "baseline_recovery", "title": "Baseline recovery"},
+    {"id": "closures_identifiability", "title": "Closures and identifiability"},
+    {"id": "algebra_code_numerics", "title": "Algebra, code, and numerics"},
+    {"id": "mathematical_prerequisites", "title": "Mathematical prerequisites and solution conditions"},
+    {"id": "evidence_novelty", "title": "Evidence and novelty"},
+    {"id": "calibration_external_validation", "title": "Calibration and external validation"},
+    {"id": "discrimination_causality", "title": "Discrimination and causality"},
+    {"id": "reporting_integrity", "title": "Reporting integrity"}
+  ],
+  "stages": {
+    "contract": {
+      "files": ["problem_contract.json"],
+      "directories": [],
+      "verification_policy": "not-required"
+    },
+    "theory": {
+      "files": [
+        "problem_contract.json",
+        "balance_audit.md",
+        "assumption_ledger.md",
+        "evidence_map.md",
+        "resource_register.md",
+        "hypothesis_matrix.md",
+        "model_card.md"
+      ],
+      "directories": ["derivations"],
+      "verification_policy": "not-required"
+    },
+    "verified": {
+      "files": [
+        "problem_contract.json",
+        "balance_audit.md",
+        "assumption_ledger.md",
+        "evidence_map.md",
+        "resource_register.md",
+        "hypothesis_matrix.md",
+        "model_card.md",
+        "verification_report.json",
+        "benchmark_register.md",
+        "validation_summary.md",
+        "experiment_plan.md"
+      ],
+      "directories": ["derivations"],
+      "verification_policy": "promotion"
+    }
+  },
+  "modes": {
+    "explore": {
+      "steps": [1, 2, 3, 4, 5, 10],
+      "files": [
+        "problem_contract.json",
+        "balance_audit.md",
+        "assumption_ledger.md",
+        "evidence_map.md",
+        "resource_register.md",
+        "hypothesis_matrix.md"
+      ],
+      "directories": [],
+      "verification_policy": "not-required",
+      "claim_ceiling": 2
+    },
+    "derive": {
+      "steps": [1, 2, 3, 4, 6, 7, 8, 10],
+      "files": [
+        "problem_contract.json",
+        "balance_audit.md",
+        "assumption_ledger.md",
+        "evidence_map.md",
+        "resource_register.md",
+        "hypothesis_matrix.md",
+        "model_card.md"
+      ],
+      "directories": ["derivations"],
+      "verification_policy": "not-required",
+      "claim_ceiling": 4
+    },
+    "audit": {
+      "steps": [1, 2, 3, 4, 6, 8, 10],
+      "files": [
+        "problem_contract.json",
+        "balance_audit.md",
+        "assumption_ledger.md",
+        "evidence_map.md",
+        "resource_register.md",
+        "model_card.md",
+        "verification_report.json"
+      ],
+      "directories": [],
+      "verification_policy": "audit",
+      "claim_ceiling": null
+    },
+    "validate": {
+      "steps": [1, 3, 4, 8, 9, 10],
+      "files": [
+        "problem_contract.json",
+        "assumption_ledger.md",
+        "evidence_map.md",
+        "resource_register.md",
+        "model_card.md",
+        "verification_report.json",
+        "benchmark_register.md",
+        "validation_summary.md"
+      ],
+      "directories": [],
+      "verification_policy": "promotion",
+      "claim_ceiling": 8
+    },
+    "full": {
+      "steps": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      "files": [
+        "problem_contract.json",
+        "balance_audit.md",
+        "assumption_ledger.md",
+        "evidence_map.md",
+        "resource_register.md",
+        "hypothesis_matrix.md",
+        "model_card.md",
+        "verification_report.json",
+        "benchmark_register.md",
+        "validation_summary.md",
+        "experiment_plan.md"
+      ],
+      "directories": ["derivations"],
+      "verification_policy": "promotion",
+      "claim_ceiling": 8
+    }
+  },
+  "markdown_requirements": {
+    "balance_audit.md": {
+      "headings": ["Control volume, boundary motion, and flux signs", "Conserved quantities and integral balances", "Nondimensional equations and scale ordering", "Interface-transfer cancellation", "Boundary/initial-condition sufficiency", "Global conservation residuals", "Unresolved balance defects"],
+      "tables": [
+        {"headers": ["Quantity", "Storage", "Advective flux", "Non-advective flux", "Volume source", "Surface/interface source", "Status"], "minimum_rows": 1},
+        {"headers": ["Closure ID", "Exact balance term closed", "Relation", "Provenance/status", "Independent measurability", "Failure regime"], "minimum_rows": 1, "id_prefix": "C"},
+        {"headers": ["Term", "Reference scale", "Dimensionless coefficient", "Retain/delete/model", "Expected error", "Evidence"], "minimum_rows": 1}
+      ]
+    },
+    "assumption_ledger.md": {
+      "headings": ["Interactions among assumptions", "Sensitivity and removal tests", "Assumptions that remain unverified"],
+      "tables": [
+        {"headers": ["ID", "Assumption", "Type", "Equation/term affected", "Supporting scale or evidence", "Expected error/order", "Failure regime", "Verification observable/benchmark", "Status"], "minimum_rows": 1, "id_prefix": "A"}
+      ]
+    },
+    "evidence_map.md": {
+      "headings": ["Search strategy and date", "Competing or contradictory evidence", "Novelty threats"],
+      "tables": [
+        {"headers": ["ID", "Primary source or dataset", "Verified identity", "Specific claim supported", "Evidence state", "Definitions and regime", "Applicability limits", "Uncertainty or conflict", "Verification status"], "minimum_rows": 1, "id_prefix": "E"}
+      ]
+    },
+    "resource_register.md": {
+      "headings": ["Search record", "Conflicting definitions, models, or findings", "Sources requiring access or identity verification"],
+      "tables": [
+        {"headers": ["ID", "Title and persistent identifier", "Source type", "Version/year", "Access state", "Access checked", "Exact claim/equation/model supported", "Regime", "Evidence status", "Limitations/license"], "minimum_rows": 1, "id_prefix": "R"},
+        {"headers": ["Date", "Database", "Query", "Filters", "Material results", "Negative/counter evidence"], "minimum_rows": 1}
+      ]
+    },
+    "hypothesis_matrix.md": {
+      "headings": ["Selection criteria fixed before evaluation"],
+      "tables": [
+        {"headers": ["ID", "Mechanism and causal chain", "Governing balances", "Required closures", "Scaling skeleton", "Distinctive prediction", "Failure regime", "Decisive test", "Novelty threats", "Status"], "minimum_rows": 1, "id_prefix": "H"}
+      ]
+    },
+    "model_card.md": {
+      "headings": ["Status and claim-ladder rung", "Scoped physical question", "Governing mechanism", "Equations and variable definitions", "Conservation-law ancestry and balance residuals", "Assumptions, scale orderings, and closures", "Mathematical method and solution conditions", "Parameter provenance and calibration", "Dimensional and conservation checks", "Limiting cases and baseline recovery", "Validation evidence and uncertainty", "Known failures, exclusions, and domain shift", "Reproducible implementation", "Smallest next decisive test"]
+    },
+    "benchmark_register.md": {
+      "headings": ["Provenance and preprocessing", "Geometry, boundary, initial, and property-state audit", "Missing data, censoring, repeats, and covariance", "Domain-shift map", "Checksums and reproducible retrieval"],
+      "tables": [
+        {"headers": ["ID", "Persistent identifier/version", "Evidence level", "Measurands/reference fields", "Conditions and domain", "Uncertainty", "Intended role", "Leakage group", "Access/license", "Checksum", "Acceptance decision"], "minimum_rows": 1, "id_prefix": "B"}
+      ]
+    },
+    "validation_summary.md": {
+      "headings": ["Status and claim-ladder rung", "Data or benchmark provenance", "Assumption-to-benchmark mapping", "Calibration, model-selection, and sealed-validation partition", "Baselines and predeclared metrics", "Validation results with uncertainty", "Failure cases and residual risk", "Reproducible commands and environment"]
+    },
+    "experiment_plan.md": {
+      "headings": ["Competing hypotheses", "Measurement equation and target uncertainty", "Conditions of maximum prediction separation", "Instrumentation, synchronization, and spatial registration", "Randomization, independent replication, and blocking", "Power, effect-size, and stopping rationale", "Causal event ordering", "Sealed validation cases", "Safety and stop criteria"],
+      "tables": [
+        {"headers": ["Run", "Controlled variables", "Mechanism observables", "Terminal response", "Predictions by hypothesis", "Minimum effect size", "Required uncertainty", "Acceptance or rejection rule", "Data role"], "minimum_rows": 1}
+      ]
+    }
+  }
+}

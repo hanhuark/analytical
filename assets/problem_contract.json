@@ -1,7 +1,9 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "2.0",
   "title": "REPLACE_ME",
   "decision_or_claim": "REPLACE_ME",
+  "model_status": "proposed",
+  "claim_ladder_rung": 1,
   "evidence_state": "proposed",
   "event_definition": "REPLACE_ME",
   "system_boundary": "REPLACE_ME",
@@ -17,6 +19,7 @@
       "name": "REPLACE_ME",
       "range": "REPLACE_ME",
       "unit": "REPLACE_ME",
+      "property_state": "REPLACE_ME",
       "evidence_state": "unknown"
     }
   ],
@@ -26,7 +29,11 @@
     {
       "name": "REPLACE_ME",
       "symbol": "REPLACE_ME",
+      "dimension": "REPLACE_ME",
       "unit": "REPLACE_ME",
+      "sign_convention": "REPLACE_ME",
+      "role": "REPLACE_ME",
+      "property_state": "REPLACE_ME",
       "definition": "REPLACE_ME",
       "evidence_state": "proposed"
     }
@@ -35,15 +42,28 @@
     {
       "name": "REPLACE_ME",
       "symbol": "REPLACE_ME",
+      "dimension": "REPLACE_ME",
       "unit": "REPLACE_ME",
+      "sign_convention": "REPLACE_ME",
       "role": "REPLACE_ME",
       "property_state": "REPLACE_ME",
+      "definition": "REPLACE_ME",
       "evidence_state": "unknown"
     }
   ],
   "conservation_laws": ["REPLACE_ME"],
   "source_and_sink_terms": ["REPLACE_ME"],
-  "constitutive_closures": ["REPLACE_ME"],
+  "constitutive_closures": [
+    {
+      "id": "C1",
+      "name": "REPLACE_ME",
+      "relation": "REPLACE_ME",
+      "status": "assumed",
+      "provenance": "REPLACE_ME",
+      "calibration_boundary": "REPLACE_ME",
+      "evidence_state": "assumed"
+    }
+  ],
   "frame_and_invariance": "REPLACE_ME",
   "scale_analysis": {
     "reference_scales": ["REPLACE_ME"],

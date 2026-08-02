@@ -1,0 +1,34 @@
+name: analytical-skill-ci
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 9 1 * *"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.10", "3.12", "3.13"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Check skill structure
+        run: python scripts/check_skill.py
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate completed examples
+        run: |
+          python scripts/validate_package.py examples/steady-wall-conduction --mode derive
+          python scripts/validate_package.py examples/saturated-pool-chf-audit --mode audit
+      - name: Check resource registry schema and staleness
+        run: python scripts/check_resources.py --max-age-days 365
