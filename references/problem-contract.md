@@ -13,9 +13,14 @@ Use this contract before generating a new analytical model. Unknown information 
 7. **Operating conditions**: Give ranges and units for pressure, temperature, load, flux, flow rate, gravity, time, and other controls.
 8. **Boundary and initial conditions**: State imposed and measured quantities and their uncertainty.
 9. **Variables**: Define every symbol, dimension, SI unit, sign, role, property state, and evidence state.
-10. **Baselines**: Record accepted theory, correlation, numerical solution, or limiting construction to beat or recover.
-11. **Calibration boundary**: Declare which data may set constants and which cases remain sealed.
-12. **Acceptance and falsification**: State quantitative pass/fail tests before selecting a mechanism.
+10. **Conserved quantities and sources**: State which mass, species, momentum, energy, charge, and entropy relations apply and identify external and interfacial sources.
+11. **Constitutive closures**: Separate exact balances from equations of state, transport laws, turbulence, kinetics, interfacial, and geometric closures.
+12. **Frame and invariance**: Declare inertial, rotating, accelerating, or relativistic frame; state the transformation or invariance test.
+13. **Scale analysis**: Define reference scales, dimensionless groups, ordering parameters, and expected reduction error.
+14. **Baselines**: Record accepted theory, correlation, numerical solution, or limiting construction to beat or recover.
+15. **Calibration boundary**: Declare which data may set constants and which cases remain sealed.
+16. **Benchmark plan**: Map assumptions, closures, and terminal predictions to exact, numerical, or experimental tests.
+17. **Acceptance and falsification**: State quantitative pass/fail tests before selecting a mechanism.
 
 ## Scope test
 

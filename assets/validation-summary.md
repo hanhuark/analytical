@@ -4,6 +4,8 @@
 
 ## Data or benchmark provenance
 
+## Assumption-to-benchmark mapping
+
 ## Preprocessing and property evaluation
 
 ## Calibration, model-selection, and sealed-validation partition
@@ -11,6 +13,8 @@
 ## Baselines and metrics
 
 ## Dimensional, manufactured, and limiting-case tests
+
+## Conservation and closure-specific tests
 
 ## Validation results with uncertainty
 

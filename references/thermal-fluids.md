@@ -1,10 +1,39 @@
 # Thermal-Fluid Analytical Development
 
+## Contents
+
+- [Preserve the physical specification](#preserve-the-physical-specification)
+- [Thermal-fluid reduction conditions](#thermal-fluid-reduction-conditions)
+- [Boiling-crisis scoping](#boiling-crisis-scoping)
+- [Mandatory pool-boiling baseline](#mandatory-pool-boiling-baseline)
+- [Candidate mechanism families](#candidate-mechanism-families)
+- [CHF validation variables](#chf-validation-variables)
+- [Decisive checks](#decisive-checks)
+
 ## Preserve the physical specification
 
 Define the fluid and phase composition, pressure, temperature and reference state, geometry, orientation, gravity, imposed flow, heat and mass fluxes, conjugate solid, surface condition, initial and boundary conditions, and whether properties are local, bulk, film, wall, saturation, or reference-state values.
 
-Use mass, momentum, energy, species, entropy, interface jump, contact-line, and constitutive relations as applicable. Check Reynolds, Prandtl, Nusselt, Péclet, Jakob, Weber, Bond, Capillary, Ohnesorge, Biot, Fourier, Mach, density-ratio, viscosity-ratio, and geometry groups only when supported by the scoped balance.
+Derive phase and total mass, momentum, total/internal energy, species, entropy, interface jump, contact-line, solid-conduction, and constitutive relations as applicable. Require interphase mass, momentum, and energy transfers to cancel in the combined-system balance except for declared storage or external sources. Keep latent heat, sensible energy, pressure work, kinetic energy, viscous dissipation, conjugate storage, and radiation terms visible until scale analysis supports a reduction.
+
+Check Reynolds, Prandtl, Nusselt, Péclet, Jakob, Weber, Bond, Capillary, Ohnesorge, Biot, Fourier, Mach, density-ratio, viscosity-ratio, property-variation, and geometry groups only when supported by the scoped balance. Record whether each group orders a deleted term, a boundary condition, a closure, or a response; a dimensionless group by itself is not a mechanism.
+
+## Thermal-fluid reduction conditions
+
+Audit at minimum:
+
+- incompressible versus low-Mach versus compressible formulation;
+- constant-density versus Boussinesq buoyancy treatment;
+- steady, quasi-steady, periodic, or transient storage;
+- laminar, transitional, RANS, LES, DNS, or unresolved turbulence;
+- single-temperature versus separate phase/solid energy equations;
+- equilibrium versus kinetic phase change;
+- resolved interface versus averaged two-fluid, mixture, drift-flux, or heat-flux-partition model;
+- one-dimensional, boundary-layer, axisymmetric, periodic, or finite-domain geometry;
+- imposed wall temperature, imposed heat flux, conjugate heating, or finite thermal-mass boundary;
+- constant versus state-dependent properties and the declared evaluation state.
+
+For every reduction identify the omitted term, ordering parameter, expected error, and an observable or benchmark that can test it.
 
 ## Boiling-crisis scoping
 

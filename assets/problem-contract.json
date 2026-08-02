@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "title": "REPLACE_ME",
   "decision_or_claim": "REPLACE_ME",
   "evidence_state": "proposed",
@@ -41,6 +41,16 @@
       "evidence_state": "unknown"
     }
   ],
+  "conservation_laws": ["REPLACE_ME"],
+  "source_and_sink_terms": ["REPLACE_ME"],
+  "constitutive_closures": ["REPLACE_ME"],
+  "frame_and_invariance": "REPLACE_ME",
+  "scale_analysis": {
+    "reference_scales": ["REPLACE_ME"],
+    "dimensionless_groups": ["REPLACE_ME"],
+    "ordering_parameters": ["REPLACE_ME"],
+    "expected_reduction_error": "REPLACE_ME"
+  },
   "assumptions": ["REPLACE_ME"],
   "exclusions": ["REPLACE_ME"],
   "baselines": ["REPLACE_ME"],
@@ -48,5 +58,6 @@
   "acceptance_criteria": ["REPLACE_ME"],
   "falsification_cases": ["REPLACE_ME"],
   "uncertainty_plan": "REPLACE_ME",
+  "benchmark_plan": ["REPLACE_ME"],
   "provenance": ["REPLACE_ME"]
 }

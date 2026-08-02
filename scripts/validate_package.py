@@ -28,16 +28,23 @@ STAGE_FILES = {
     "contract": {"problem_contract.json"},
     "theory": {
         "problem_contract.json",
+        "balance_audit.md",
+        "assumption_ledger.md",
         "evidence_map.md",
+        "resource_register.md",
         "hypothesis_matrix.md",
         "model_card.md",
     },
     "verified": {
         "problem_contract.json",
+        "balance_audit.md",
+        "assumption_ledger.md",
         "evidence_map.md",
+        "resource_register.md",
         "hypothesis_matrix.md",
         "model_card.md",
         "verification_report.md",
+        "benchmark_register.md",
         "validation_summary.md",
         "experiment_plan.md",
     },
@@ -64,6 +71,11 @@ REQUIRED_CONTRACT_KEYS = {
     "boundary_conditions",
     "dependent_variables",
     "governing_variables",
+    "conservation_laws",
+    "source_and_sink_terms",
+    "constitutive_closures",
+    "frame_and_invariance",
+    "scale_analysis",
     "assumptions",
     "exclusions",
     "baselines",
@@ -71,6 +83,7 @@ REQUIRED_CONTRACT_KEYS = {
     "acceptance_criteria",
     "falsification_cases",
     "uncertainty_plan",
+    "benchmark_plan",
     "provenance",
 }
 
@@ -113,6 +126,18 @@ def validate_variable_group(
             errors.append(f"{label}.evidence_state is invalid: {state!r}")
 
 
+def validate_nonempty_string_list(
+    contract: dict[str, Any], key: str, errors: list[str]
+) -> None:
+    value = contract.get(key)
+    if not isinstance(value, list) or not value:
+        errors.append(f"{key} must be a non-empty list")
+        return
+    for index, item in enumerate(value):
+        if not isinstance(item, str) or not item.strip():
+            errors.append(f"{key}[{index}] must be a non-empty string")
+
+
 def validate_contract(path: Path) -> list[str]:
     errors: list[str] = []
     try:
@@ -149,6 +174,50 @@ def validate_contract(path: Path) -> list[str]:
         {"name", "symbol", "unit", "role", "property_state", "evidence_state"},
         errors,
     )
+
+    for key in (
+        "conservation_laws",
+        "source_and_sink_terms",
+        "constitutive_closures",
+        "assumptions",
+        "exclusions",
+        "baselines",
+        "acceptance_criteria",
+        "falsification_cases",
+        "benchmark_plan",
+        "provenance",
+    ):
+        validate_nonempty_string_list(contract, key, errors)
+
+    scale_analysis = contract.get("scale_analysis")
+    required_scale_keys = {
+        "reference_scales",
+        "dimensionless_groups",
+        "ordering_parameters",
+        "expected_reduction_error",
+    }
+    if not isinstance(scale_analysis, dict):
+        errors.append("scale_analysis must be an object")
+    else:
+        missing_scale_keys = required_scale_keys - scale_analysis.keys()
+        if missing_scale_keys:
+            errors.append(
+                "scale_analysis missing keys: "
+                + ", ".join(sorted(missing_scale_keys))
+            )
+        for key in (
+            "reference_scales",
+            "dimensionless_groups",
+            "ordering_parameters",
+        ):
+            value = scale_analysis.get(key)
+            if not isinstance(value, list) or not value:
+                errors.append(f"scale_analysis.{key} must be a non-empty list")
+        expected_error = scale_analysis.get("expected_reduction_error")
+        if not isinstance(expected_error, str) or not expected_error.strip():
+            errors.append(
+                "scale_analysis.expected_reduction_error must be a non-empty string"
+            )
 
     if contains_placeholder(contract):
         errors.append("problem contract contains an unfilled placeholder")

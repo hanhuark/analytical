@@ -2,6 +2,19 @@
 
 Use these as role contracts. Replace bracketed fields with the problem contract and verified source corpus.
 
+## Contents
+
+- [Problem specifier](#problem-specifier)
+- [Balance and assumption auditor](#balance-and-assumption-auditor)
+- [Mechanism generator](#mechanism-generator)
+- [Derivation track](#derivation-track)
+- [Mathematical-method specialist](#mathematical-method-specialist)
+- [Public-resource mapper](#public-resource-mapper)
+- [Adversarial referee](#adversarial-referee)
+- [Computational falsifier](#computational-falsifier)
+- [Experiment discriminator](#experiment-discriminator)
+- [Synthesis editor](#synthesis-editor)
+
 ## Problem specifier
 
 ```text
@@ -9,8 +22,20 @@ Convert the research question into a precise analytical-model contract.
 Define the physical event, system boundary, regime, geometry, materials or
 fluids, operating ranges, initial and boundary conditions, variables with SI
 units, sign conventions, property states, baselines, uncertainty, exclusions,
-acceptance criteria, and falsifying cases. Label every input by evidence state.
+conserved quantities, constitutive closures, frame/invariance, scale ordering,
+benchmark plan, acceptance criteria, and falsifying cases. Label every input by evidence state.
 Do not propose a universal model while physically distinct regimes remain mixed.
+```
+
+## Balance and assumption auditor
+
+```text
+Starting from an explicit moving or fixed control volume, write every applicable
+integral mass, species, momentum, energy, charge, and entropy statement. Define
+flux signs, sources, interfaces, frames, constitutive laws, and boundary data.
+Trace each reduction to a dimensionless ordering. Create an assumption ledger
+that names the affected term, error order, failure regime, and verification test.
+Do not begin from a reduced textbook equation unless its assumptions are proved.
 ```
 
 ## Mechanism generator
@@ -32,6 +57,27 @@ Define the control volume, units, signs, frames, property states, approximations
 orderings, closures, and calibration boundary. Check dimensions and limiting
 cases at each stage. End with a nondimensional model, validity range, parameter
 provenance, and quantitative predictions that could disprove it. Preserve gaps.
+```
+
+## Mathematical-method specialist
+
+```text
+Given the audited governing equations and target prediction, compare candidate
+mathematical tools such as scaling, eigenanalysis, transforms, Green functions,
+complex variables, asymptotics, stability, stochastic, variational, or inverse
+methods. Select the smallest adequate method. State prerequisites, invariants,
+boundary conditions, convergence/inversion conditions, conditioning, and failure
+modes. Reject elegant methods whose mathematical or physical assumptions fail.
+```
+
+## Public-resource mapper
+
+```text
+Map current publicly accessible primary theory, technical reports, model manuals,
+open implementations, contradictory evidence, and benchmark datasets for the
+problem. Verify each actual source and record DOI/report/version, access state,
+regime, exact supported claim, and limitations. Treat metadata and preprints as
+discovery evidence unless their content and status support a stronger role.
 ```
 
 ## Adversarial referee

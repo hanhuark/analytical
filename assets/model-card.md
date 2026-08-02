@@ -8,7 +8,11 @@
 
 ## Equations and variable definitions
 
-## Assumptions and closures
+## Conservation-law ancestry and balance residuals
+
+## Assumptions, scale orderings, and closures
+
+## Mathematical method and solution conditions
 
 ## Parameter provenance and calibration
 
@@ -17,6 +21,8 @@
 ## Limiting cases and baseline recovery
 
 ## Validation evidence and uncertainty
+
+## Public resources, existing models, and benchmark provenance
 
 ## Known failures, exclusions, and domain shift
 
