@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analytical"
+  short_description: "Develop and verify analytical models"
+  default_prompt: "Use $analytical to develop and rigorously test a mechanistic model for this physical problem."

@@ -1,0 +1,25 @@
+# Analytical Model Card
+
+## Status and claim-ladder rung
+
+## Scoped physical question
+
+## Governing mechanism
+
+## Equations and variable definitions
+
+## Assumptions and closures
+
+## Parameter provenance and calibration
+
+## Dimensional and conservation checks
+
+## Limiting cases and baseline recovery
+
+## Validation evidence and uncertainty
+
+## Known failures, exclusions, and domain shift
+
+## Reproducible implementation
+
+## Smallest next decisive test

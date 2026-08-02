@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "title": "REPLACE_ME",
+  "decision_or_claim": "REPLACE_ME",
+  "evidence_state": "proposed",
+  "event_definition": "REPLACE_ME",
+  "system_boundary": "REPLACE_ME",
+  "regime": {
+    "description": "REPLACE_ME",
+    "included": ["REPLACE_ME"],
+    "excluded": ["REPLACE_ME"]
+  },
+  "geometry_and_frame": "REPLACE_ME",
+  "materials_or_fluids": ["REPLACE_ME"],
+  "operating_conditions": [
+    {
+      "name": "REPLACE_ME",
+      "range": "REPLACE_ME",
+      "unit": "REPLACE_ME",
+      "evidence_state": "unknown"
+    }
+  ],
+  "initial_conditions": ["REPLACE_ME"],
+  "boundary_conditions": ["REPLACE_ME"],
+  "dependent_variables": [
+    {
+      "name": "REPLACE_ME",
+      "symbol": "REPLACE_ME",
+      "unit": "REPLACE_ME",
+      "definition": "REPLACE_ME",
+      "evidence_state": "proposed"
+    }
+  ],
+  "governing_variables": [
+    {
+      "name": "REPLACE_ME",
+      "symbol": "REPLACE_ME",
+      "unit": "REPLACE_ME",
+      "role": "REPLACE_ME",
+      "property_state": "REPLACE_ME",
+      "evidence_state": "unknown"
+    }
+  ],
+  "assumptions": ["REPLACE_ME"],
+  "exclusions": ["REPLACE_ME"],
+  "baselines": ["REPLACE_ME"],
+  "calibration_boundary": "REPLACE_ME",
+  "acceptance_criteria": ["REPLACE_ME"],
+  "falsification_cases": ["REPLACE_ME"],
+  "uncertainty_plan": "REPLACE_ME",
+  "provenance": ["REPLACE_ME"]
+}
