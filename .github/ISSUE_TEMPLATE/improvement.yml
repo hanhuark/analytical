@@ -1,0 +1,54 @@
+name: Workflow, schema, or documentation improvement
+description: Propose a focused usability, automation, documentation, or coverage improvement
+title: "[improvement] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Describe an observable problem and acceptance criterion. Do not include confidential
+        research, restricted data, credentials, reviewer identities, student records, or
+        sponsor-controlled material.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Skill trigger or mode selection
+        - Physics or mathematics guidance
+        - Public resources or benchmarks
+        - Template or schema
+        - Validator or scaffold
+        - Example or evaluation case
+        - Documentation or onboarding
+        - Continuous integration
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Current problem
+      description: Give a minimal task, package, command, or reading path that demonstrates the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome and acceptance criterion
+      description: State what should change and how a reviewer can determine that it works.
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Scientific or compatibility risks
+      description: Note possible false triggers, claim inflation, schema compatibility, domain limitations, or other risks.
+    validations:
+      required: false
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Data and rights check
+      options:
+        - label: I have not included confidential or restricted material and may share the attached evidence.
+          required: true
