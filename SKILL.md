@@ -25,7 +25,7 @@ Create a correctly named scaffold before substantial work:
 python scripts/init_package.py <analysis-package> --mode <explore|derive|audit|validate|full>
 ```
 
-Use the completed [steady-wall conduction derivation](examples/steady-wall-conduction/) and [saturated pool-CHF audit](examples/saturated-pool-chf-audit/) as format and status examples. Do not transfer their assumptions, evidence, or claim rung to a new problem.
+Use the completed [steady-wall conduction derivation](examples/steady-wall-conduction/), [saturated pool-CHF audit](examples/saturated-pool-chf-audit/), and [micropillar local-balance CHF audit](examples/micropillar-local-wicking-evaporation-chf-audit/) as format and status examples. Do not transfer their assumptions, evidence, or claim rung to a new problem.
 
 Do not begin derivation until the event, system boundary, variables, units, boundary conditions, and falsification criteria are adequate. Do not promote a model while a `fatal` or `major` verification finding remains unresolved.
 
@@ -104,6 +104,17 @@ Do not use target data to choose the functional form before the model is physica
 Read [verification-gates.md](references/verification-gates.md). Check definitions, dimensions, frames, conservation, thermodynamic admissibility, assumptions, asymptotic limits, accepted baselines, closure independence, identifiability, algebra, numerics, citations, novelty, uncertainty, domain shift, and failure modes.
 
 Classify findings as `fatal`, `major`, `repairable`, `applicability-limiting`, or `minor`. Fix scientific-validity problems in the derivation, data, experiment, or model; do not repair them only by weakening prose.
+
+### Local wicking--evaporation CHF audit pattern
+
+For an existing structured-surface CHF model that couples wicking and evaporation, use `audit` mode and begin with the local liquid-volume balance, not a terminal CHF fit. Keep the following objects separate in both the derivation and the comparison figure:
+
+- the dimensionless liquid-supply ratio and its mathematical root/domain;
+- the flat-surface CHF baseline, including its correlation, bounding rule, and contact-angle basis;
+- the structure-induced enhancement and its evaporation closure; and
+- reported inputs, source-specific assumptions, and quantities inferred from an unverified figure.
+
+For the canonical annular, axisymmetric reduction, test whether the local balance gives a finite dry-spot limit and state any dry-spot-free branch explicitly. A root finder must not silently stand in for a physical branch rule. Use regression cases to establish implementation parity, but call that internal numerical agreement, not experimental validation. When static, receding, intrinsic, or apparent contact angles enter different closures, record each role and run the flat-baseline sensitivity separately from the local flux-ratio calculation. Do not transfer wetting values between unlike substrates, coatings, or microstructures without direct support.
 
 ### 9. Falsify computationally and empirically
 

@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 INIT = ROOT / "scripts" / "init_package.py"
 VALIDATE = ROOT / "scripts" / "validate_package.py"
 CHECK_RESOURCES = ROOT / "scripts" / "check_resources.py"
+MICROPILLAR_AUDIT = ROOT / "examples" / "micropillar-local-wicking-evaporation-chf-audit"
 
 
 def replace_placeholders(value: Any) -> Any:
@@ -74,6 +75,11 @@ class PackageToolsTests(unittest.TestCase):
             self.assertTrue((package / "verification_report.json").is_file())
             self.assertFalse((package / "problem-contract.json").exists())
             self.assertTrue((package / "derivations" / "derivation.md").is_file())
+
+    def test_micropillar_local_balance_audit_example_is_structurally_valid(self) -> None:
+        result = self.run_tool(str(VALIDATE), str(MICROPILLAR_AUDIT), "--mode", "audit")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn("RECORDED MODEL RESULT: qualified-pass", result.stdout)
 
     def test_every_declared_profile_has_complete_scaffold_assets(self) -> None:
         for option, names in (
